@@ -1,10 +1,12 @@
 #include <iostream>
-#include "logger/easylogging++.h"
+#include "command/option.h"
+#include "logger/log.h"
 
 INITIALIZE_EASYLOGGINGPP
 
-int main() {
+int main(int argc, char *argv[]) {
 
     printf("%s", getenv("JAVA_HOME"));
+
     return 0;
 }
