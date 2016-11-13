@@ -2,11 +2,13 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/command/params.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/command/optionInfo.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/command/behaviour.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/command/optioninfo.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/command/argument.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/command/option.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/command/paramslist.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/command/required.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/command/params.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/command/behaviour.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/logger/log.h" isTestSource="false" />
