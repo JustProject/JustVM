@@ -1,7 +1,18 @@
+# version
 cmake_minimum_required(VERSION 3.5)
+# project name
 project(JustVM)
-
+# flag line
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# head file path
+INCLUDE_DIRECTORIES(
 
-set(SOURCE_FILES main.cpp logger/log.h command/optioninfo.h command/behaviour.h command/params.h command/argument.h command/option.h command/required.h command/paramslist.h)
+)
+
+AUX_SOURCE_DIRECTORY(src DIR_SRCS)
+
+# set environment
+SET(JAVA_HOME ${/usr/libexec/java_home})
+
+set(SOURCE_FILES src/main.cpp src/logger/log.h src/command/optioninfo.h src/command/behaviour.h src/command/params.h src/command/argument.h src/command/option.h src/command/required.h src/command/paramslist.h)
 add_executable(JustVM ${SOURCE_FILES})

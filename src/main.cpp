@@ -1,5 +1,4 @@
 #include <iostream>
-#include "command/option.h"
 #include "logger/log.h"
 
 INITIALIZE_EASYLOGGINGPP

@@ -19,11 +19,15 @@ namespace cmd {
 
         std::vector<bool> checked;
 
-        std::vector<bool> 
+        std::vector<bool> used;
     public:
         ParamsList(std::initializer_list<std::shared_ptr<Params>> initParamsList,
                    std::string optionInfo = "optionInfo") :
                 Params(optionInfo), paramsList(initParamsList) { };
+
+
+        virtual ~ParamsList() { }
+
 
     };
 }
