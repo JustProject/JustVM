@@ -17,7 +17,9 @@ namespace cmd {
 
         std::vector<std::string> values;
 
+        std::vector<bool> checked;
 
+        std::vector<bool> 
     public:
         ParamsList(std::initializer_list<std::shared_ptr<Params>> initParamsList,
                    std::string optionInfo = "optionInfo") :
