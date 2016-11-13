@@ -9,7 +9,7 @@ INCLUDE_DIRECTORIES(
         src/logger src/command
 )
 
-AUX_SOURCE_DIRECTORY(src DIR_SRCS)
+#AUX_SOURCE_DIRECTORY(src DIR_SRCS)
 
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES src/main.cpp src/command/)
 add_executable(JustVM ${SOURCE_FILES})

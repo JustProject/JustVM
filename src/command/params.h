@@ -7,7 +7,7 @@
 
 #include <string>
 #include <sstream>
-#include "optioninfo.h"
+#include "option_info.h"
 
 namespace cmd {
 
