@@ -28,9 +28,7 @@ public:
     }
 
     void getArgs(std::string args) {
-//        for (auto arg : args) {
-//            LOG(INFO) << "fuck args -- " << arg;
-//        }
+        LOG(INFO) << "fuck args -- " << args;
     }
 };
 
@@ -69,10 +67,13 @@ int main(int argc, char *argv[]) {
                                                        std::bind(&FuckDemo::getClass, &demo,
                                                                  std::placeholders::_1));
 
-    auto args =
+    auto arg =
             std::make_shared<cmd::Option<std::string>>("-args", "Args",
                                                        std::bind(&FuckDemo::getArgs, &demo,
                                                                  std::placeholders::_1));
+    auto args =
+            std::make_shared<cmd::MultiValue>(";", arg);
+
 
     cmd::Command command(argc, argv, {help, version, xJreOption, classPath, classFile, args});
 
