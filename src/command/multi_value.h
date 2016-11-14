@@ -7,6 +7,7 @@
 #define JUSTVM_MULTI_VALUE_H
 
 #include <vector>
+#include <memory>
 #include "params.h"
 
 namespace cmd {
