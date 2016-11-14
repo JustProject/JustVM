@@ -90,6 +90,9 @@ namespace cmd {
     public:
         explicit NeedOptionValue(const std::string &__s)
                 : invalid_argument(__s) { }
+
+        explicit NeedOptionValue(const char *args)
+                : invalid_argument(args) { }
     };
 
     /**
@@ -105,6 +108,9 @@ namespace cmd {
     public:
         explicit OptionNotSpecified(const std::string &__s) :
                 invalid_argument(__s) { }
+
+        explicit OptionNotSpecified(const char *args)
+                : invalid_argument(args) { }
     };
 
     template<>
