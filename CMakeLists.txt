@@ -5,7 +5,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 PROJECT(JustVM)
 
 # flag line
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11") # FIXME Maybe you'd like to add a -fpermissive to pass the build?
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # head file path
 INCLUDE_DIRECTORIES(
@@ -17,4 +17,4 @@ INCLUDE_DIRECTORIES(
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
 
 # Executable target declaration
-ADD_EXECUTABLE(JustVM ${SOURCE_FILES})
+ADD_EXECUTABLE(JustVM ${SOURCE_FILES} src/entry/entry.h)
