@@ -7,6 +7,8 @@ PROJECT(JustVM)
 # flag line
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
 # head file path
 INCLUDE_DIRECTORIES(
         src/logger
@@ -15,6 +17,9 @@ INCLUDE_DIRECTORIES(
 
 # Add all source files under the directory src to SOURCE_FILES
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
+AUX_SOURCE_DIRECTORY(src/jvm_args JVM_ARGS)
+
+#ADD_SUBDIRECTORY(src/jvm_args)
 
 # Executable target declaration
-ADD_EXECUTABLE(JustVM ${SOURCE_FILES} src/entry/entry.h)
+ADD_EXECUTABLE(JustVM ${JVM_ARGS} ${SOURCE_FILES})
