@@ -22,7 +22,7 @@ public:
      * @param *argv[] args
      * @return ptr of JvmArgs
      */
-    std::shared_ptr<JvmArgs> initialCommand(int argc, char *argv[]);
+    std::shared_ptr<JvmArgs> initial(int argc, char **argv);
 
     void startJustVm();
 

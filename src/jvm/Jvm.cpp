@@ -10,7 +10,7 @@
  * @param *argv[] args
  * @return ptr of JvmArgs
  */
-std::shared_ptr<JvmArgs> Jvm::initialCommand(int argc, char *argv[]) {
+std::shared_ptr<JvmArgs> Jvm::initial(int argc, char **argv) {
     JvmArgs jvmArgs;
 
     // print help message

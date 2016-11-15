@@ -12,7 +12,10 @@ int main(int argc, char *argv[]) {
 
     Jvm jvm;
 
-    auto args = jvm.initialCommand(argc, argv);
+    // get command args
+    auto args = jvm.initial(argc, argv);
+
+
 
     return 0;
 }

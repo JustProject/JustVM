@@ -5,9 +5,14 @@
 #ifndef JUSTVM_ENTRY_H
 #define JUSTVM_ENTRY_H
 
+#include <string>
+
 namespace ept {
 
     class Entry {
+    protected:
+        const std::string separator;
+
 
     };
 

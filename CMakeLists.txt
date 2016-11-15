@@ -13,15 +13,22 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 INCLUDE_DIRECTORIES(
         src/logger
         src/command
+        src/utils
 )
 
 # Add all source files under the directory src to SOURCE_FILES
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
 AUX_SOURCE_DIRECTORY(src/jvm_args JVM_ARGS)
 AUX_SOURCE_DIRECTORY(src/jvm JVM_RUNABLE)
+AUX_SOURCE_DIRECTORY(src/class_path JVM_CLASS_PATH)
 
 ADD_SUBDIRECTORY(src/jvm_args)
 ADD_SUBDIRECTORY(src/jvm)
 
 # Executable target declaration
-ADD_EXECUTABLE(JustVM ${JVM_ARGS} ${JVM_RUNABLE} ${SOURCE_FILES})
+ADD_EXECUTABLE(JustVM
+        ${UTILS}
+        ${JVM_ARGS}
+        ${JVM_RUNABLE}
+        ${JVM_CLASS_PATH}
+        ${SOURCE_FILES})
