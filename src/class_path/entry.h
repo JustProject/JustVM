@@ -5,18 +5,26 @@
 #ifndef JUSTVM_ENTRY_H
 #define JUSTVM_ENTRY_H
 
-#include <string>
 #include "pystring.h"
+#include "util.h"
+#include <string>
+
 
 namespace ept {
 
     class Entry {
-    protected:
-        const std::string separator;
-
     public:
 
+        Entry() { };
 
+        ~Entry() { };
+
+        /**
+         * read class file
+         */
+        virtual std::vector<byte> readClass(std::string className) = 0;
+
+        virtual std::string &toString() = 0;
 
     };
 

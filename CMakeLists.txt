@@ -24,6 +24,8 @@ AUX_SOURCE_DIRECTORY(src/class_path JVM_CLASS_PATH)
 
 ADD_SUBDIRECTORY(src/jvm_args)
 ADD_SUBDIRECTORY(src/jvm)
+ADD_SUBDIRECTORY(src/class_path)
+
 
 # Executable target declaration
 ADD_EXECUTABLE(JustVM
@@ -31,4 +33,4 @@ ADD_EXECUTABLE(JustVM
         ${JVM_ARGS}
         ${JVM_RUNABLE}
         ${JVM_CLASS_PATH}
-        ${SOURCE_FILES})
+        ${SOURCE_FILES} src/class_path/multi_entry.h)

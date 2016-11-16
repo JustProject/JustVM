@@ -484,7 +484,6 @@ namespace pystring {
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "pystring.h"
 
 #include <algorithm>
 #include <cctype>
