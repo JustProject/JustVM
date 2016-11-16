@@ -3,8 +3,10 @@
 //
 
 #include "class_path.h"
+#include "util.h"
 
 namespace ept {
+
     void ClassPath::setClassPath(string &cp) {
         if (cp == "") {
             string newCp(".");
@@ -27,7 +29,5 @@ namespace ept {
         jreVec.insert(insert_2, EXT_DIR);
         // add jre/lib/ext/*
         string jreExt = pystring::join(SEPARATOR, jreVec);
-
-
     }
 }

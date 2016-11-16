@@ -20,13 +20,11 @@ namespace ept {
         DirEntry(std::string &path) : absPath(path) { }
 
         ~DirEntry() {
-            delete absPath;
+
         };
 
         std::vector<byte> readClass(std::string className) override {
-
             auto result = readFromFile((absPath + className).c_str());
-
             return result;
         }
 

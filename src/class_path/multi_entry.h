@@ -6,7 +6,6 @@
 #define JUSTVM_MULTI_ENTRY_H
 
 #include "entry.h"
-#include "pystring.h"
 #include <vector>
 #include <string>
 
@@ -27,19 +26,18 @@ namespace ept {
         };
 
         ~MultiEntry() {
-            delete listEntry;
-            delete multiEntry;
+
         }
 
         std::vector<byte> readClass(std::string className) override {
-            for (auto entry : multiEntry) {
-                auto result = entry.readClass(className);
-
-                if (result != nullptr && result.size() != 0) {
-                    return result;
-                }
-            }
-
+//            for (auto entry : multiEntry) {
+//                auto result = entry.readClass(className);
+//
+//                if (result != nullptr && result.size() != 0) {
+//                    return result;
+//                }
+//            }
+//
             return nullptr;
         }
 

@@ -1,5 +1,4 @@
 #include <iostream>
-#include "logger/log.h"
 #include "jvm_args/JvmArgs.h"
 #include "jvm/Jvm.h"
 #include "class_path/dir_entry.h"
