@@ -12,13 +12,13 @@
 namespace ept {
     class MultiEntry : public Entry {
     protected:
-        vector<Entry> multiEntry;
+        std::vector<Entry> multiEntry;
 
-        string listEntry;
+        std::string listEntry;
 
     public:
 
-        MultiEntry(string path) {
+        MultiEntry(std::string path) {
 
         };
 
@@ -40,7 +40,7 @@ namespace ept {
 
         std::string &toString() override {
             if (listEntry == nullptr) {
-                vector list;
+                std::vector list;
 
                 for (int i = 0; i < multiEntry.size(); ++i) {
                     list.push_back(multiEntry[i]);

@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 #include <cassert>
+#include <memory>
 
 size_t getFileSize(FILE *file);
 

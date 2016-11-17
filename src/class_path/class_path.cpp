@@ -2,7 +2,12 @@
 // Created by 刘丰恺 on 2016/11/16.
 //
 
+#include <vector>
+
 #include "class_path.h"
+
+using std::string;
+using std::vector;
 
 namespace ept {
 
