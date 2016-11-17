@@ -8,8 +8,6 @@
 #include "entry.h"
 #include <string>
 
-using std::ifstream;
-
 namespace ept {
     class DirEntry : public Entry {
 
@@ -26,6 +24,10 @@ namespace ept {
         std::vector<byte> readClass(std::string className) override {
             auto result = readFromFile((absPath + className).c_str());
             return result;
+        }
+
+        std::shared_ptr<byte> readByteClass(std::string className) {
+            return readByteFromFile((absPath + className).c_str());
         }
 
         std::string &toString() override {

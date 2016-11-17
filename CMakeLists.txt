@@ -13,7 +13,6 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
 INCLUDE_DIRECTORIES(
         src/logger
         src/command
-        src/static
 )
 
 # Add all source files under the directory src to SOURCE_FILES

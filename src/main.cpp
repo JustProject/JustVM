@@ -17,13 +17,10 @@ int main(int argc, char *argv[]) {
 
     ept::DirEntry dirEntry(dir);
 
-    auto fuck = dirEntry.readClass("");
+    auto fuck = dirEntry.readByteClass("");
 
-    for (auto fu : fuck) {
-        std::cout << fu;
-    }
 
-//    LOG(INFO) << fuck[1][1];
+    LOG(INFO) << fuck.get()[10];
 
     return 0;
 }

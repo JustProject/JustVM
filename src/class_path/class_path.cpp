@@ -3,7 +3,6 @@
 //
 
 #include "class_path.h"
-#include "util.h"
 
 namespace ept {
 

@@ -9,9 +9,6 @@
 #include <vector>
 #include <string>
 
-using std::string;
-using std::vector;
-
 namespace ept {
     class MultiEntry : public Entry {
     protected:

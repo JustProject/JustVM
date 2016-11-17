@@ -6,18 +6,16 @@
 #define JUSTVM_CLASS_PATH_H
 
 #include "../utils/pystring.h"
-
-using std::string;
-using std::vector;
+#include "../utils/util.h"
 
 namespace ept {
 
     class ClassPath {
 
     public:
-        void setJreHome(string &jre);
+        void setJreHome(std::string &jre);
 
-        void setClassPath(string &cp);
+        void setClassPath(std::string &cp);
     };
 
 }
