@@ -8,31 +8,34 @@
 #include "../utils/util.h"
 #include "../utils/pystring.h"
 #include <string>
-#include <fstream>
-#include <vector>
-#include <cassert>
 
+class Entry {
+public:
 
-namespace ept {
+    Entry() {};
 
-    class Entry {
-    public:
+    virtual ~Entry() = default;
 
-        Entry() { };
+    /**
+     * read class file
+     */
+    virtual void readClass(std::string className) = 0;
 
-        ~Entry() { };
+    virtual std::string &toString() = 0;
 
-        /**
-         * read class file
-         */
-        virtual std::vector<byte> readClass(std::string className) = 0;
-
-        virtual std::string &toString() = 0;
-
-
-
+    size_t getSize() const {
+        return fileSize;
     };
 
-}
+    Point<byte> getByteChars() const {
+        return byteChars;
+    };
+
+protected:
+    size_t fileSize;
+
+    Point<byte> byteChars = new byte;
+};
+
 
 #endif //JUSTVM_ENTRY_H

@@ -6,35 +6,24 @@
 #define JUSTVM_DIR_ENTRY_H
 
 #include "entry.h"
+#include "../utils/util.h"
 #include <string>
 
-namespace ept {
-    class DirEntry : public Entry {
 
-    protected:
-        std::string absPath;
+class DirEntry : public Entry {
 
-    public:
-        DirEntry(std::string &path) : absPath(path) { }
+protected:
+    std::string absPath;
 
-        ~DirEntry() {
+public:
+    DirEntry(std::string &path) : absPath(path) {}
 
-        };
+    virtual ~DirEntry() {};
 
-        std::vector<byte> readClass(std::string className) override {
-            auto result = readFromFile((absPath + className).c_str());
-            return result;
-        }
+    virtual void readClass(std::string className) override;
 
-        std::shared_ptr<byte> readByteClass(std::string className) {
-            return readByteFromFile((absPath + className).c_str());
-        }
-
-        std::string &toString() override {
-            return absPath;
-        }
-    };
-}
+    virtual std::string &toString() override;
+};
 
 
 #endif //JUSTVM_DIR_ENTRY_H

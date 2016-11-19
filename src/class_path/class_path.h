@@ -7,6 +7,8 @@
 
 #include "../utils/pystring.h"
 #include "../utils/util.h"
+#include <vector>
+#include <string>
 
 namespace ept {
 

@@ -19,7 +19,7 @@ public:
     /**
      * initial command options
      * @param argc size of options
-     * @param *argv[] args
+     * @param **argv args
      * @return ptr of JvmArgs
      */
     std::shared_ptr<JvmArgs> initial(int argc, char **argv);

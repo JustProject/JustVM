@@ -15,12 +15,13 @@ int main(int argc, char *argv[]) {
 
     std::string dir = "/Users/liufengkai/Desktop/a.md";
 
-    ept::DirEntry dirEntry(dir);
+    DirEntry dirEntry(dir);
 
-    auto fuck = dirEntry.readByteClass("");
+    dirEntry.readClass("");
 
-
-    LOG(INFO) << fuck.get()[10];
+    for (int i = 0; i < dirEntry.getSize(); ++i) {
+        std::cout << dirEntry.getByteChars()[i];
+    }
 
     return 0;
 }

@@ -21,6 +21,7 @@ AUX_SOURCE_DIRECTORY(src/jvm_args JVM_ARGS)
 AUX_SOURCE_DIRECTORY(src/jvm JVM_RUNABLE)
 AUX_SOURCE_DIRECTORY(src/utils UTILS)
 AUX_SOURCE_DIRECTORY(src/class_path JVM_CLASS_PATH)
+AUX_SOURCE_DIRECTORY(src/class_read JVM_CLASS_READER)
 
 
 # Executable target declaration
@@ -29,4 +30,5 @@ ADD_EXECUTABLE(JustVM
         ${JVM_ARGS}
         ${JVM_RUNABLE}
         ${JVM_CLASS_PATH}
+        ${JVM_CLASS_READER}
         ${SOURCE_FILES})
