@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef JUST_VM_UTILS_ZIPPER_H
+#define JUST_VM_UTILS_ZIPPER_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -47,3 +50,5 @@ namespace zipper {
         std::shared_ptr<Impl> m_impl;
     };
 }
+
+#endif

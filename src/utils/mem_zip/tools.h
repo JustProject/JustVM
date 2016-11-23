@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef JUST_VM_UTILS_TOOLS_H
+#define JUST_VM_UTILS_TOOLS_H
+
 #include "defs.h"
 
 #include <vector>
@@ -29,4 +32,4 @@ std::vector<std::string> filesFromDirectory(const std::string &path);
 std::string fileNameFromPath(const std::string &path);
 
 
-
+#endif // JUST_VM_UTILS_TOOLS_H

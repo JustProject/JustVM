@@ -209,6 +209,6 @@ std::string fileNameFromPath(const std::string &fullPath) {
 #elif defined(USE_BOOST) || defined(USE_NEW_FS_API)
     return fs::path(fullPath).filename().string();
 #else
-    return fs::path(fullPath).filename().generic_string();
+    return fs::path(fullPath).filename().string();
 #endif
 }

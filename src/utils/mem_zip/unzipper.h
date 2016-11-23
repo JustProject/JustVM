@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef JUST_VM_UTILS_UNZIPPER_H
+#define JUST_VM_UTILS_UNZIPPER_H
+
+
 #include <vector>
 #include <istream>
 #include <ostream>
@@ -87,3 +91,5 @@ namespace zipper {
         tm_s unixdate;
     };
 }
+
+#endif

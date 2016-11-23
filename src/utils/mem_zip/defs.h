@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef JUST_VM_UTILS_DEFS_H
+#define JUST_VM_UTILS_DEFS_H
+
+
 extern "C"
 {
 #include <stdio.h>
@@ -63,4 +67,6 @@ extern "C"
 #else
 #  define MKDIR(d) mkdir(d, 0775)
 #  define CHDIR(d) chdir(d)
+#endif
+
 #endif
