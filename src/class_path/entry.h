@@ -6,7 +6,7 @@
 #define JUSTVM_ENTRY_H
 
 #include "../utils/util.h"
-#include "../utils/pystring.h"
+#include "../utils/pystring/pystring.h"
 #include <string>
 
 class Entry {

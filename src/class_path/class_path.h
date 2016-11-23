@@ -5,7 +5,7 @@
 #ifndef JUSTVM_CLASS_PATH_H
 #define JUSTVM_CLASS_PATH_H
 
-#include "../utils/pystring.h"
+#include "../utils/pystring/pystring.h"
 #include "../utils/util.h"
 #include <vector>
 #include <string>
