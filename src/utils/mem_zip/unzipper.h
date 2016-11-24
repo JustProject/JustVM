@@ -3,7 +3,7 @@
 #ifndef JUST_VM_UTILS_UNZIPPER_H
 #define JUST_VM_UTILS_UNZIPPER_H
 
-
+#include "../util.h"
 #include <vector>
 #include <istream>
 #include <ostream>
@@ -38,6 +38,8 @@ namespace zipper {
         bool extractEntryToStream(const std::string &name, std::ostream &stream);
 
         bool extractEntryToMemory(const std::string &name, std::vector<unsigned char> &vec);
+
+        Point<byte> extractEntryToChars(const std::string &name, Point<byte> bytes);
 
         void close();
 

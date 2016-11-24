@@ -5,6 +5,7 @@
 
 #include "defs.h"
 #include <boost/filesystem.hpp>
+#include "../util.h"
 #include <vector>
 #include <istream>
 

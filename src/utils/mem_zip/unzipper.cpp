@@ -269,6 +269,25 @@ namespace zipper {
                 return false;
             }
         }
+
+        Point<byte> extractEntryToChars(const std::string &name, Point<byte> bytes) {
+            std::vector<byte> temp;
+            bool result = extractEntryToMemory(name, temp);
+
+            if (!result) {
+                bytes = new byte;
+                return bytes;
+            }
+
+            bytes = new byte[temp.size()];
+
+            for (int i = 0; i < temp.size(); ++i) {
+                bytes[i] = temp[i];
+            }
+
+            temp.clear();
+            return bytes;
+        }
     };
 
     Unzipper::Unzipper(std::istream &zippedBuffer)
@@ -340,6 +359,10 @@ namespace zipper {
             m_impl->close();
             m_open = false;
         }
+    }
+
+    Point<byte> Unzipper::extractEntryToChars(const std::string &name, Point<byte> bytes) {
+        return m_impl->extractEntryToChars(name, bytes);
     }
 
 }
