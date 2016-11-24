@@ -8,17 +8,19 @@ PROJECT(JustVM)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
-
 SET(BOOST_ROOT /Users/liufengkai/boost)
 SET(BOOST_INCLUDE_DIR /Users/liufengkai/boost/include)
 
-FIND_LIBRARY(Boost COMPONENTS filesystem system)
-INCLUDE_DIRECTORIES(${BOOST_INCLUDE_DIR})
+FIND_LIBRARY(Boost NAMES filesystem system)
+
+SET(BOOST_SYSTEM_LIB ${BOOST_ROOT}/lib/libboost_system.a)
+SET(BOOST_FILE_SYSTEM_LIB ${BOOST_ROOT}/lib/libboost_filesystem.a)
 
 # head file path
 INCLUDE_DIRECTORIES(
         src/logger
         src/command
+        ${BOOST_INCLUDE_DIR}
 )
 
 # Add all source files under the directory src to SOURCE_FILES
@@ -50,4 +52,6 @@ ADD_EXECUTABLE(JustVM
         ${SOURCE_FILES})
 
 TARGET_LINK_LIBRARIES(JustVM zlib
+        ${BOOST_SYSTEM_LIB}
+        ${BOOST_FILE_SYSTEM_LIB}
         ${Boost_LIBRARIES})

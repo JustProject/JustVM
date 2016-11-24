@@ -4,10 +4,10 @@
 #define JUST_VM_UTILS_TOOLS_H
 
 #include "defs.h"
-
-#include <vector>
 #include <boost/filesystem.hpp>
+#include <vector>
 #include <istream>
+
 
 void getFileCrc(std::istream &input_stream, std::vector<char> &buff, unsigned long &result_crc);
 

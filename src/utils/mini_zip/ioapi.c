@@ -10,11 +10,9 @@
    This program is distributed under the terms of the same license as zlib.
    See the accompanying LICENSE file for the full text of the license.
 */
-
-#include <stdlib.h>
+#include "ioapi.h"
 #include <string.h>
 
-#include "ioapi.h"
 
 #if defined(_WIN32)
 #  define snprintf _snprintf

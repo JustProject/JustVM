@@ -164,7 +164,7 @@ std::string parentDirectory(const std::string &filepath) {
 #elif defined(USE_NEW_FS_API)
     return fs::path(filepath).parent_path().string();
 #else
-    return fs::path(filepath).branch_path().generic_string();
+    return fs::path(filepath).branch_path().string();
 #endif
 }
 
@@ -195,7 +195,7 @@ std::vector<std::string> filesFromDirectory(const std::string &path) {
 #if defined(USE_BOOST) || defined(USE_NEW_FS_API)
             files.push_back(file.string());
 #else
-            files.push_back(file.generic_string());
+            files.push_back(file.string());
 #endif
     }
 #endif

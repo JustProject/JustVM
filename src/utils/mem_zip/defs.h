@@ -3,7 +3,6 @@
 #ifndef JUST_VM_UTILS_DEFS_H
 #define JUST_VM_UTILS_DEFS_H
 
-
 extern "C"
 {
 #include <stdio.h>

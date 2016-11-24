@@ -1,10 +1,6 @@
-#include "unzipper.h"
 #include "defs.h"
 #include "tools.h"
-
-#include <functional>
-#include <exception>
-#include <fstream>
+#include "unzipper.h"
 
 namespace zipper {
 
