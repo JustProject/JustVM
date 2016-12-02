@@ -20,38 +20,35 @@ SET(BOOST_FILE_SYSTEM_LIB ${BOOST_ROOT}/lib/libboost_filesystem.a)
 INCLUDE_DIRECTORIES(
         src/logger
         src/command
+        src/utils
         ${BOOST_INCLUDE_DIR}
 )
+
+ADD_SUBDIRECTORY(src/utils)
+ADD_SUBDIRECTORY(src/class_read)
 
 # Add all source files under the directory src to SOURCE_FILES
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
 AUX_SOURCE_DIRECTORY(src/jvm_args JVM_ARGS)
 AUX_SOURCE_DIRECTORY(src/jvm JVM_RUNABLE)
-AUX_SOURCE_DIRECTORY(src/utils UTILS)
 AUX_SOURCE_DIRECTORY(src/class_path JVM_CLASS_PATH)
-AUX_SOURCE_DIRECTORY(src/class_read JVM_CLASS_READER)
 AUX_SOURCE_DIRECTORY(src/utils/pystring PYSTRING)
-
-
-AUX_SOURCE_DIRECTORY(src/utils/zip ZIP_LIB_SRCS)
-AUX_SOURCE_DIRECTORY(src/utils/mini_zip MINI_LIB_SRCS)
-AUX_SOURCE_DIRECTORY(src/utils/mem_zip MEM_ZIP_SRCS)
-
-ADD_LIBRARY(zlib ${ZIP_LIB_SRCS})
 
 # Executable target declaration
 ADD_EXECUTABLE(JustVM
-        ${UTILS}
         ${JVM_ARGS}
         ${JVM_RUNABLE}
         ${JVM_CLASS_PATH}
         ${PYSTRING}
-        ${MINI_LIB_SRCS}
-        ${MEM_ZIP_SRCS}
         ${JVM_CLASS_READER}
+        ${CLASS_READ}
         ${SOURCE_FILES})
 
-TARGET_LINK_LIBRARIES(JustVM zlib
+TARGET_LINK_LIBRARIES(JustVM
+        zlib
+        utils
+        mini_zip_lib
+        mem_zip_lib
         ${BOOST_SYSTEM_LIB}
         ${BOOST_FILE_SYSTEM_LIB}
         ${Boost_LIBRARIES})

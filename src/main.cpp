@@ -1,6 +1,7 @@
 #include <iostream>
 #include "jvm_args/JvmArgs.h"
 #include "jvm/Jvm.h"
+#include "class_read/class_reader.h"
 #include "utils/mem_zip/unzipper.h"
 #include "class_path/dir_entry.h"
 
@@ -29,23 +30,24 @@ int main(int argc, char *argv[]) {
 //        std::cout << dirEntry.getByteChars()[i];
 //    }
 
-    Unzipper unzipper(dir);
-    std::vector<ZipEntry> entries = unzipper.entries();
+//    Unzipper unzipper(dir);
+//    std::vector<ZipEntry> entries = unzipper.entries();
 
-    for (int i = 0; i < entries.size(); i++) {
-        std::cout << entries[i].name << std::endl;
-    }
+//    for (int i = 0; i < entries.size(); i++) {
+//        std::cout << entries[i].name << std::endl;
+//    }
 
-    std::vector<unsigned char> unzipped_entry;
-
-    unzipper.extractEntryToMemory("java/io/EOFException.class", unzipped_entry);
-
-    for (int i = 0; i < unzipped_entry.size(); ++i) {
-        std::cout << unzipped_entry[i];
-    }
-
-
-    unzipper.close();
+//    std::vector<byte> unzipped_entry;
+//
+//    unzipper.extractEntryToMemory("java/lang/String.class", unzipped_entry);
+//
+//    for (int i = 0; i < unzipped_entry.size(); ++i) {
+//        printf("%c", unzipped_entry[i]);
+//    }
+//
+//
+//
+//    unzipper.close();
 
     return 0;
 }
