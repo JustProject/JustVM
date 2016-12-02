@@ -9,7 +9,8 @@ uint32 ClassFile::getMagic() const {
 }
 
 void ClassFile::setMagic(uint32 magic) {
-    ClassFile::magic = magic;
+//    ClassFile::magic = magic;
+    this->magic = magic;
 }
 
 uint16 ClassFile::getMinorVersion() const {
