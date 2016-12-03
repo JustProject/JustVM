@@ -13,16 +13,16 @@
     fl_array_ut NAME() \
 
 // WARNING: All value will be store as a pointer so you may want to keep your eye on it and make sure it is validated.
-template<typename T>
-class fl_array_ut {
-public:
-    fl_array_ut(uint32_t length = 0);
-    fl_array_ut(T *source, );
-
-private:
-    uint32_t length;
-    T **content;
-};
+//template<typename T>
+//class fl_array_ut {
+//public:
+//    fl_array_ut(uint32_t length = 0);
+//    fl_array_ut(T *source);
+//
+//private:
+//    uint32_t length;
+//    T **content;
+//};
 
 //TODO
 
