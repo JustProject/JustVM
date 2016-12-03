@@ -26,6 +26,7 @@ INCLUDE_DIRECTORIES(
 
 ADD_SUBDIRECTORY(src/utils)
 ADD_SUBDIRECTORY(src/class_read)
+ADD_SUBDIRECTORY(src/misc)
 
 # Add all source files under the directory src to SOURCE_FILES
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)

@@ -1,5 +1,6 @@
 //
 // Created by 刘丰恺 on 2016/12/2.
+// Yoto at Fri., Dec. 2nd, 2016, 23:21
 //
 
 #ifndef JUSTVM_CLASS_FILE_H
@@ -19,7 +20,7 @@ protected:
     uint16 thisClass;
     uint16 superClass;
 
-    std::vector<uint16> interfaces;
+    std::vector<uint16> interfaces; // FIXME Fixed-length array -- Yoto
 
     // fields & methods
 public:
@@ -55,21 +56,37 @@ public:
         this->constantPoolCount = constantPoolCount;
     }
 
-    inline uint16 getAccessFlags() const;
+    inline uint16 getAccessFlags() const {
+        return accessFlags;
+    }
 
-    inline void setAccessFlags(const uint16 accessFlags);
+    inline void setAccessFlags(const uint16 accessFlags) {
+        this->accessFlags = accessFlags;
+    }
 
-    inline uint16 getThisClass() const;
+    inline uint16 getThisClass() const {
+        return thisClass;
+    }
 
-    inline void setThisClass(const uint16 thisClass);
+    inline void setThisClass(const uint16 thisClass) {
+        this->thisClass = thisClass;
+    }
 
-    inline uint16 getSuperClass() const;
+    inline uint16 getSuperClass() const {
+        return superClass;
+    }
 
-    inline void setSuperClass(const uint16 superClass);
+    inline void setSuperClass(const uint16 superClass) {
+        this->superClass = superClass;
+    }
 
-    inline const std::vector<uint16> &getInterfaces() const;
+    inline const std::vector<uint16> &getInterfaces() const {
+        return interfaces;
+    }
 
-    inline void setInterfaces(const std::vector<uint16> &interfaces);
+    inline void setInterfaces(const std::vector<uint16> &interfaces) {
+        this->interfaces = interfaces;
+    }
 };
 
 
