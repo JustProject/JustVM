@@ -1,5 +1,6 @@
 //
 // Created by 刘丰恺 on 2016/12/2.
+// Yoto at Fri., Dec. 2nd, 2016, 23:21
 //
 
 #ifndef JUSTVM_CLASS_FILE_H
@@ -19,41 +20,73 @@ protected:
     uint16 thisClass;
     uint16 superClass;
 
-    std::vector<uint16> interfaces;
+    std::vector<uint16> interfaces; // FIXME Fixed-length array -- Yoto
 
     // fields & methods
 public:
-    uint32 getMagic() const;
+    inline uint32 getMagic() const {
+        return magic;
+    }
 
-    void setMagic(uint32 magic);
+    inline void setMagic(const uint32 magic) {
+        this->magic = magic;
+    }
 
-    uint16 getMinorVersion() const;
+    inline uint16 getMinorVersion() const {
+        return minorVersion;
+    }
 
-    void setMinorVersion(uint16 minorVersion);
+    inline void setMinorVersion(const uint16 minorVersion) {
+        this->minorVersion = minorVersion;
+    }
 
-    uint16 getMajorVersion() const;
+    inline uint16 getMajorVersion() const {
+        return majorVersion;
+    }
 
-    void setMajorVersion(uint16 majorVersion);
+    inline void setMajorVersion(const uint16 majorVersion) {
+        this->majorVersion = majorVersion;
+    }
 
-    uint16 getConstantPoolCount() const;
+    inline uint16 getConstantPoolCount() const {
+        return constantPoolCount;
+    }
 
-    void setConstantPoolCount(uint16 constantPoolCount);
+    inline void setConstantPoolCount(const uint16 constantPoolCount) {
+        this->constantPoolCount = constantPoolCount;
+    }
 
-    uint16 getAccessFlags() const;
+    inline uint16 getAccessFlags() const {
+        return accessFlags;
+    }
 
-    void setAccessFlags(uint16 accessFlags);
+    inline void setAccessFlags(const uint16 accessFlags) {
+        this->accessFlags = accessFlags;
+    }
 
-    uint16 getThisClass() const;
+    inline uint16 getThisClass() const {
+        return thisClass;
+    }
 
-    void setThisClass(uint16 thisClass);
+    inline void setThisClass(const uint16 thisClass) {
+        this->thisClass = thisClass;
+    }
 
-    uint16 getSuperClass() const;
+    inline uint16 getSuperClass() const {
+        return superClass;
+    }
 
-    void setSuperClass(uint16 superClass);
+    inline void setSuperClass(const uint16 superClass) {
+        this->superClass = superClass;
+    }
 
-    const std::vector<uint16> &getInterfaces() const;
+    inline const std::vector<uint16> &getInterfaces() const {
+        return interfaces;
+    }
 
-    void setInterfaces(const std::vector<uint16> &interfaces);
+    inline void setInterfaces(const std::vector<uint16> &interfaces) {
+        this->interfaces = interfaces;
+    }
 };
 
 

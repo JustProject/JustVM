@@ -12,8 +12,16 @@ AUX_SOURCE_DIRECTORY(mini_zip MINI_LIB_SRCS)
 
 AUX_SOURCE_DIRECTORY(mem_zip MEM_ZIP_SRCS)
 
+AUX_SOURCE_DIRECTORY(fl_array FL_ARRAY_SRCS) # Fixed-length array
+
 ADD_LIBRARY(zlib ${ZIP_LIB_SRCS})
 
 ADD_LIBRARY(mini_zip_lib ${MINI_LIB_SRCS})
 
 ADD_LIBRARY(mem_zip_lib ${MEM_ZIP_SRCS})
+
+ADD_LIBRARY(fl_array ${FL_ARRAY_SRCS})
+
+TARGET_LINK_LIBRARIES(mini_zip_lib zlib)
+
+TARGET_LINK_LIBRARIES(mem_zip_lib mini_zip_lib)
