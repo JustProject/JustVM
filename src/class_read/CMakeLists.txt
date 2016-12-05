@@ -20,8 +20,6 @@ ADD_EXECUTABLE(ClassRead
 TARGET_LINK_LIBRARIES(ClassRead
         zlib
         utils
-        mini_zip_lib
         mem_zip_lib
-        ${BOOST_SYSTEM_LIB}
-        ${BOOST_FILE_SYSTEM_LIB}
+        mini_zip_lib
         ${Boost_LIBRARIES})
