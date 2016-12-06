@@ -68,7 +68,7 @@ returnType ClassReader::readType() {
         uint32 ul = u1 << 24 | u2 << 16 | u3 << 8 | u4;
         uint32 ur = u5 << 24 | u6 << 16 | u7 << 8 | u8;
 
-        uint64 u64 = ul << 32 | ur;
+        uint64 u64 = (unsigned long) ul << 32 | ur;
 
         return u64;
     }
