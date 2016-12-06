@@ -18,7 +18,7 @@ protected:
     uint16 minorVersion;
     uint16 majorVersion;
     uint16 constantPoolCount;
-    std::vector<ConstantPool> constantPool;
+    std::vector<cp_item> constantPool;
     ACStatus accessFlags;
     uint16 thisClass;
     uint16 superClass;
@@ -91,11 +91,11 @@ public:
         this->interfaces = interfaces;
     }
 
-    const std::vector<ConstantPool> &getConstantPool() const {
+    const std::vector<cp_item> &getConstantPool() const {
         return constantPool;
     }
 
-    void setConstantPool(const std::vector<ConstantPool> &constantPool) {
+    void setConstantPool(const std::vector<cp_item> &constantPool) {
         ClassFile::constantPool = constantPool;
     }
 };
