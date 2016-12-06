@@ -7,7 +7,10 @@
 #define JUSTVM_CLASS_FILE_H
 
 
+#include "access_flag/af.h"
 #include "../utils/util.h"
+#include "constant_pool/cp_info.h"
+
 
 class ClassFile {
 protected:
@@ -15,12 +18,12 @@ protected:
     uint16 minorVersion;
     uint16 majorVersion;
     uint16 constantPoolCount;
-    // constant pool
-    uint16 accessFlags;
+    std::vector<ConstantPool> constantPool;
+    ACStatus accessFlags;
     uint16 thisClass;
     uint16 superClass;
 
-    std::vector<uint16> interfaces; // FIXME Fixed-length array -- Yoto
+    std::vector<uint16> interfaces;
 
     // fields & methods
 public:
@@ -56,11 +59,11 @@ public:
         this->constantPoolCount = constantPoolCount;
     }
 
-    inline uint16 getAccessFlags() const {
+    inline ACStatus getAccessFlags() const {
         return accessFlags;
     }
 
-    inline void setAccessFlags(const uint16 accessFlags) {
+    inline void setAccessFlags(const ACStatus accessFlags) {
         this->accessFlags = accessFlags;
     }
 
@@ -86,6 +89,14 @@ public:
 
     inline void setInterfaces(const std::vector<uint16> &interfaces) {
         this->interfaces = interfaces;
+    }
+
+    const std::vector<ConstantPool> &getConstantPool() const {
+        return constantPool;
+    }
+
+    void setConstantPool(const std::vector<ConstantPool> &constantPool) {
+        ClassFile::constantPool = constantPool;
     }
 };
 
