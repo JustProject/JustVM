@@ -7,6 +7,7 @@
 #include "class_file.h"
 #include <iostream>
 #include <cinttypes>
+#include "constant_pool/cp_info.h"
 
 using std::cout;
 using std::endl;
@@ -14,7 +15,13 @@ using std::endl;
 using zipper::Unzipper;
 using zipper::ZipEntry;
 
-int main() {
+int main(int argc, char **argv) {
+    ConstantPool pool;
+    pool.meta_info.tag = CPTag::CONSTANT_Utf8;
+    cout << sizeof(pool);
+}
+
+int main1() {
 
     std::string dir = "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar";
 

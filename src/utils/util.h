@@ -10,6 +10,14 @@
 #include <memory>
 #include <cstdint>
 
+#define BC_U1 uint16_t // Byte code u1
+#define BC_U2 uint32_t // Byte code u2
+#define BC_U4 uint64_t // Byte code u4
+
+#define BC_U1_SIZE sizeof(BC_U1)
+#define BC_U2_SIZE sizeof(BC_U2)
+#define BC_U4_SIZE sizeof(BC_U4)
+
 // define byte
 typedef unsigned char byte;
 
