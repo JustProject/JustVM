@@ -47,11 +47,11 @@ cmake ..
 make
 ```
 
-### Build - Plan II - Clion
-Choose ``File -> Open...`` from the menu, and choose ``CMakeLists.txt``
-in the project root directory, then click OK.  
-After open the project, you may choose ``Run -> Build`` or press keyboard 
-shortcut ``Ctrl+F9``/``control+F9``, then the building process will be 
+### Build - Plan II - CLion
+Choose ``File -> Open...`` from the menu, then choose ``CMakeLists.txt``
+in the project root directory, click OK.
+After opening the project, you may choose ``Run -> Build`` or press keyboard
+shortcut ``Ctrl+F9``/``control+F9``, then the building process will be
 initiated automatically.
 
 ## Contact Developers
