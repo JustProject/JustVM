@@ -1,12 +1,6 @@
 # version
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
-# project name
-PROJECT(ClassRead)
-
-# flag line
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
-
 AUX_SOURCE_DIRECTORY(. CLASS_READ)
 
 ADD_SUBDIRECTORY(constant_pool)

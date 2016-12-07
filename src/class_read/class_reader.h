@@ -75,7 +75,7 @@ returnType bytes_reader::readType() {
     return 0;
 }
 
-uint8 bytes_reader::readUint8() {
+inline uint8 bytes_reader::readUint8() {
     byte u1 = data[currentPoint++];
     return u1;
 }

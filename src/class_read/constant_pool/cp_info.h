@@ -147,7 +147,11 @@ union cp_item {
     CONSTANT_InvokeDynamic_info invokeDynamic_info;
 };
 
+/**
+ * Use this method to get constant-pool item from bytes
+ * you should use it after get the count of constant-pool
+ * @return cp-item
+ */
 cp_item *read_cp_item_from_bytes(bytes_reader, BC_U2);
-
 
 #endif //JUSTVM_CONSTANTINFO_H
