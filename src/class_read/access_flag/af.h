@@ -7,9 +7,10 @@
 
 
 #include <util.h>
+#include <fl_array/fl_array_ut.hpp>
 
 
-enum AccessFlag : BC_U2 {
+enum af_tag : BC_U2 {
     ACC_PUBLIC = 0x0001,
     ACC_FINAL = 0x0010,
     ACC_SUPER = 0x0020,
@@ -29,7 +30,7 @@ enum AccessFlag : BC_U2 {
  *
  * FYI, JVM Specs "Table 4.1-A Class access and property modifiers"
  */
-class ACStatus {
+class af_item {
 public:
     /** \brief The default constructor will construct the access flag of a HelloWorld-liked public class.
      *
@@ -43,7 +44,7 @@ public:
      * ACC_ANNOTATION FALSE
      * ACC_ENUM FALSE
      */
-    ACStatus() :
+    af_item() :
             acc_public(true),
             acc_final(false),
             acc_super(true), // FIXME Are we talking about Java 8 and above?
@@ -53,41 +54,41 @@ public:
             acc_annotation(false),
             acc_enum(false) {}
 
-    ACStatus(std::vector<AccessFlag>) throw(std::invalid_argument);
+    af_item(just::util::fl_array::fl_array_ut<af_tag> &) throw(std::invalid_argument);
 
-    ACStatus(BC_U2);
+    af_item(BC_U2);
 
     BC_U2 getModifier();
 
-    inline bool isPublic() const {
+    inline bool is_public() const {
         return acc_public;
     }
 
-    inline bool isFinal() const {
+    inline bool is_final() const {
         return acc_final;
     }
 
-    inline bool isSuper() const {
+    inline bool is_super() const {
         return acc_super;
     }
 
-    inline bool isInterface() const {
+    inline bool is_interface() const {
         return acc_interface;
     }
 
-    inline bool isAbstract() const {
+    inline bool is_abstract() const {
         return acc_abstract;
     }
 
-    inline bool isSynthetic() const {
+    inline bool is_synthetic() const {
         return acc_synthetic;
     }
 
-    inline bool isAnnotation() const {
+    inline bool is_annotation() const {
         return acc_annotation;
     }
 
-    inline bool isEnum() const {
+    inline bool is_enum() const {
         return acc_enum;
     }
 
@@ -100,7 +101,7 @@ private:
     bool acc_synthetic;
     bool acc_annotation;
     bool acc_enum;
-    std::vector<AccessFlag> flagList;
+    just::util::fl_array::fl_array_ut<af_tag> flag_list;
 };
 
 

@@ -27,11 +27,19 @@ namespace just {
 
                 ~fl_array_ut();
 
+                bool contains(const T &);
+
+                T *begin();
+
+                T *end();
+
                 inline fl_array_size_t count() const {
                     return length;
                 }
 
                 T &operator[](fl_array_size_t);
+
+                // TODO operator=
 
             private:
                 fl_array_size_t length;
@@ -63,6 +71,26 @@ namespace just {
             }
 
             template<typename T>
+            bool fl_array_ut<T>::contains(const T &item) {
+                for (int i = 0; i < length; i++) {
+                    if (value[i] == &item) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            template<typename T>
+            T *fl_array_ut<T>::begin() {
+                return value[0].get();
+            }
+
+            template<typename T>
+            T *fl_array_ut<T>::end() {
+                return value[length - 1].get();
+            }
+
+            template<typename T>
             bool operator==(const fl_array_ut<T> &lhs, const fl_array_ut<T> &rhs) {
                 if (lhs.count() != rhs.count()) {
                     return false;
@@ -74,19 +102,6 @@ namespace just {
                 }
                 return true;
             }
-
-            // The Following code is stupid.
-//        template<typename T>
-//        fl_array_ut<T> &make_fl_array(fl_array_size_t length = 0, T init = (T) 0) {
-//            if (length != 0) {
-//                T temp[length] = {init};
-//                fl_array_ut<T> res(length, &temp[0]);
-//                return res;
-//            } else {
-//                fl_array_ut<T> res(length);
-//                return res;
-//            }
-//        }
         }
     }
 }
