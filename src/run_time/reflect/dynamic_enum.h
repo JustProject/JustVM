@@ -35,7 +35,7 @@ public:
 
 //    T fromString(std::string) const {
 //        return rand_result;
-//    }
+//
 
     T fromValue(Type) const {
         return 0;
