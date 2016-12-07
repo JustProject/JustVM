@@ -36,7 +36,8 @@ please contact one of our developers at email.
 5. CLion IDE:  
 [JetBrains CLion IDE](http://www.jetbrains.com/clion/)  
 You may already noticed that CLion IDE is a commercial-plan-only software, 
-so you may want to make a purchase to JetBrains and get its license.
+so you may want to make a purchase to JetBrains and get its license.  
+And I should also remind you that the Clion is sufficient but not necessary.
 
 ### Build - Plan I - CLI
 ```
@@ -57,4 +58,4 @@ initiated automatically.
 Yoto Chang - yotochang@gmail.com - @zhangyutng926 (Twitter&Telegram)
 
 ## Reference
-(JVM Specifications)[http://docs.oracle.com/javase/specs/jvms/se7/html/index.html]
+[JVM Specifications](http://docs.oracle.com/javase/specs/jvms/se7/html/index.html)
