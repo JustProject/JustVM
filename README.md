@@ -1,6 +1,5 @@
-# Then JustVM Open Source Project (JuVMOSP)
-
-Our goal is to **MAKE JVM SLOW AGAIN**!
+# The JustVM Open Source Project (JuVMOSP)
+**MAKE JVM SLOW AGAIN**
 
 ## Development
 Welcome, my dearest developer!
@@ -56,3 +55,6 @@ initiated automatically.
 
 ## Contact Developers
 Yoto Chang - yotochang@gmail.com - @zhangyutng926 (Twitter&Telegram)
+
+## Reference
+(JVM Specifications)[http://docs.oracle.com/javase/specs/jvms/se7/html/index.html]
