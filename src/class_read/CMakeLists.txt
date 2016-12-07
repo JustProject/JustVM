@@ -8,14 +8,12 @@ ADD_SUBDIRECTORY(access_flag)
 
 # Executable target declaration
 ADD_EXECUTABLE(ClassRead
-        class_read_test.cpp
         ${CONSTANT_POOL_INFO_SRC}
         ${ACCESS_FLAG_SRC}
         ${CLASS_READ})
 
 TARGET_LINK_LIBRARIES(ClassRead
         zlib
-        utils
         mem_zip_lib
         mini_zip_lib
         ${Boost_LIBRARIES})

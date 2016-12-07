@@ -40,6 +40,7 @@ int main0(int argc, char **argv) {
     TEST(CONSTANT_MethodType_info);
     TEST(CONSTANT_InvokeDynamic_info);
     TEST(cp_item);
+    return 0;
 }
 
 int main() {
@@ -68,6 +69,6 @@ int main() {
     classFile.setMinorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
-
+    read_cp_item_from_bytes(std::cref(reader), 10);
     return 0;
 }

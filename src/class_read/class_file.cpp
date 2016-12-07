@@ -3,5 +3,4 @@
 // Yoto at Fri., Dec. 2nd, 2016, 23:20
 //
 
-#include "class_file.h"
 

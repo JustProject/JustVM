@@ -5,8 +5,8 @@
 #ifndef JUSTVM_CONSTANTINFO_H
 #define JUSTVM_CONSTANTINFO_H
 
-#include "util.h"
 #include "../class_reader.h"
+#include "util.h"
 
 
 /** \brief Constant Pool Tag
@@ -152,6 +152,6 @@ union cp_item {
  * you should use it after get the count of constant-pool
  * @return cp-item
  */
-cp_item *read_cp_item_from_bytes(bytes_reader &, BC_U2);
+cp_item *read_cp_item_from_bytes(const bytes_reader &reader, BC_U2 u32);
 
 #endif //JUSTVM_CONSTANTINFO_H

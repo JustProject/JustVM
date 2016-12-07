@@ -44,13 +44,13 @@ ADD_EXECUTABLE(JustVM
         ${JVM_RUNABLE}
         ${JVM_CLASS_PATH}
         ${PYSTRING}
+        ${UTILS}
         ${JVM_CLASS_READER}
         ${CLASS_READ}
         ${SOURCE_FILES})
 
 TARGET_LINK_LIBRARIES(JustVM
         zlib
-        utils
         mem_zip_lib
         mini_zip_lib
         ${Boost_LIBRARIES})
