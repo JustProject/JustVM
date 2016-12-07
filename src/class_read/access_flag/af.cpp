@@ -5,7 +5,7 @@
 #include "af.h"
 
 
-ACStatus::ACStatus(std::vector<AccessFlag> flags) {
+ACStatus::ACStatus(std::vector<AccessFlag> flags) throw(std::invalid_argument) {
     // TODO Implement a FSM
 }
 

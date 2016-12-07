@@ -7,6 +7,7 @@
 
 #include "../class_reader.h"
 #include "util.h"
+#include "dynamic_enum.h"
 
 
 /** \brief Constant Pool Tag
@@ -16,22 +17,22 @@
  *
  * FYI, JVM Specs "4.4 The Constant Pool"
  */
-enum cp_tag : BC_U1 {
-    CONSTANT_Class = 7,
-    CONSTANT_Fieldref = 9,
-    CONSTANT_Methodref = 10,
-    CONSTANT_InterfaceMethodref = 11,
-    CONSTANT_String = 8,
-    CONSTANT_Integer = 3,
-    CONSTANT_Float = 4,
-    CONSTANT_Long = 5,
-    CONSTANT_Double = 6,
-    CONSTANT_NameAndType = 12,
-    CONSTANT_Utf8 = 1,
-    CONSTANT_MethodHandle = 15,
-    CONSTANT_MethodType = 16,
-    CONSTANT_InvokeDynamic = 18
-};
+ENUM_CLASS(cp_tag, BC_U1,
+           CONSTANT_Class = 7,
+           CONSTANT_Fieldref = 9,
+           CONSTANT_Methodref = 10,
+           CONSTANT_InterfaceMethodref = 11,
+           CONSTANT_String = 8,
+           CONSTANT_Integer = 3,
+           CONSTANT_Float = 4,
+           CONSTANT_Long = 5,
+           CONSTANT_Double = 6,
+           CONSTANT_NameAndType = 12,
+           CONSTANT_Utf8 = 1,
+           CONSTANT_MethodHandle = 15,
+           CONSTANT_MethodType = 16,
+           CONSTANT_InvokeDynamic = 18
+);
 
 struct CONSTANT_Meta {
     BC_U1 tag : BC_U1_SIZE;
@@ -150,8 +151,10 @@ union cp_item {
 /**
  * Use this method to get constant-pool item from bytes
  * you should use it after get the count of constant-pool
+ * @param reader bytes_reader
+ * @param u32 flag
  * @return cp-item
  */
-cp_item *read_cp_item_from_bytes(const bytes_reader &reader, BC_U2 u32);
+cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u32);
 
 #endif //JUSTVM_CONSTANTINFO_H

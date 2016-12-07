@@ -69,6 +69,7 @@ int main() {
     classFile.setMinorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
-    read_cp_item_from_bytes(std::cref(reader), 10);
+
+    read_cp_item_from_bytes(reader, 10);
     return 0;
 }

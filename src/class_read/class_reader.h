@@ -20,7 +20,7 @@ public:
     template<typename returnType>
     returnType read_bytes_with_type();
 
-    inline bool get_ready_to_read_constant_pool();
+    inline const bool get_ready_to_read_constant_pool();
 protected:
     const std::vector<byte> &data;
 
@@ -96,7 +96,7 @@ inline void bytes_reader::set_ready_to_read_constant_pool(bool flag) {
     this->ready_to_read_constant_pool_item = flag;
 }
 
-inline bool bytes_reader::get_ready_to_read_constant_pool() {
+inline const bool bytes_reader::get_ready_to_read_constant_pool() {
     return ready_to_read_constant_pool_item;
 }
 

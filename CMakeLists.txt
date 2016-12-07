@@ -25,6 +25,7 @@ INCLUDE_DIRECTORIES(
         src/logger
         src/command
         src/utils
+        src/run_time/reflect
 )
 
 ADD_SUBDIRECTORY(src/utils)
