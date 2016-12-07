@@ -8,55 +8,57 @@
 #include <functional>
 #include <string>
 
-namespace cmd {
+namespace just {
+    namespace cmd {
 
-    template<typename FunctionParamsType>
-    class Behaviour {
-    protected:
+        template<typename FunctionParamsType>
+        class Behaviour {
+        protected:
+            /**
+             * The function solve the argument
+             */
+            std::function<void(FunctionParamsType)> function;
+
+            /**
+             * Run the function
+             */
+            void call(FunctionParamsType value) {
+                this->function(value);
+            }
+
+        public:
+            /**
+             * Default Function
+             */
+            Behaviour(const std::function<void(FunctionParamsType)> &function) :
+                    function(function) {}
+
+
+            virtual ~Behaviour() {}
+
+        };
+
         /**
-         * The function solve the argument
+         * Void Input Behaviour
          */
-        std::function<void(FunctionParamsType)> function;
+        template<>
+        class Behaviour<void> {
+        protected:
 
-        /**
-         * Run the function
-         */
-        void call(FunctionParamsType value) {
-            this->function(value);
-        }
+            std::function<void()> function;
 
-    public:
-        /**
-         * Default Function
-         */
-        Behaviour(const std::function<void(FunctionParamsType)> &function) :
-                function(function) { }
+            void call() {
+                this->function();
+            }
+
+        public:
+            Behaviour(const std::function<void()> &function)
+                    : function(function) {}
 
 
-        virtual ~Behaviour() { }
-
-    };
-
-    /**
-     * Void Input Behaviour
-     */
-    template<>
-    class Behaviour<void> {
-    protected:
-
-        std::function<void()> function;
-
-        void call() {
-            this->function();
-        }
-
-    public:
-        Behaviour(const std::function<void()> &function)
-                : function(function) { }
-
-
-        virtual ~Behaviour() { }
-    };
+            virtual ~Behaviour() {}
+        };
+    }
 }
 
 #endif //JUSTVM_BEHAVIOUR_H

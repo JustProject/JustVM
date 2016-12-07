@@ -152,6 +152,6 @@ union cp_item {
  * you should use it after get the count of constant-pool
  * @return cp-item
  */
-cp_item *read_cp_item_from_bytes(bytes_reader, BC_U2);
+cp_item *read_cp_item_from_bytes(bytes_reader &, BC_U2);
 
 #endif //JUSTVM_CONSTANTINFO_H
