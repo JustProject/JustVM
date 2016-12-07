@@ -7,7 +7,6 @@
 #include "class_file.h"
 #include <iostream>
 #include <cinttypes>
-#include "constant_pool/cp_info.h"
 
 using std::cout;
 using std::endl;
@@ -15,10 +14,32 @@ using std::endl;
 using zipper::Unzipper;
 using zipper::ZipEntry;
 
+#define TEST(STRUCT) \
+{ \
+    STRUCT temp; \
+    cout << #STRUCT << " " << sizeof(temp) << endl; \
+}
+
 int main(int argc, char **argv) {
-    ConstantPool pool;
-    pool.meta_info.tag = CPTag::CONSTANT_Utf8;
-    cout << sizeof(pool);
+//    cp_item pool;
+//    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
+//    cout << sizeof(pool);
+    TEST(CONSTANT_Meta);
+    TEST(CONSTANT_Class_info);
+    TEST(CONSTANT_Fieldref_info);
+    TEST(CONSTANT_Methodref_info);
+    TEST(CONSTANT_InterfaceMethodref_info);
+    TEST(CONSTANT_String_info);
+    TEST(CONSTANT_Integer_info);
+    TEST(CONSTANT_Float_info);
+    TEST(CONSTANT_Long_info);
+    TEST(CONSTANT_Double_info);
+    TEST(CONSTANT_NameAndType_info);
+    TEST(CONSTANT_Utf8_info);
+    TEST(CONSTANT_MethodHandle_info);
+    TEST(CONSTANT_MethodType_info);
+    TEST(CONSTANT_InvokeDynamic_info);
+    TEST(cp_item);
 }
 
 int main1() {
@@ -36,7 +57,7 @@ int main1() {
 //        printf("%x ", unzipped_entry[i]);
 //    }
 
-    ClassReader reader(std::cref(unzipped_entry));
+    bytes_reader reader(std::cref(unzipped_entry));
 
 //    printf("%x" " \n", reader.readType<uint32>());
 //    printf("%" PRIu16 " \n", reader.readType<uint16>());

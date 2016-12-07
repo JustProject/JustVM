@@ -10,12 +10,12 @@
 #include <cassert>
 #include <boost/type_traits/is_same.hpp>
 
-class ClassReader {
+class bytes_reader {
 public:
 
-    ClassReader(const std::vector<byte> &data);
+    inline bytes_reader(const std::vector<byte> &data);
 
-    ~ClassReader() {};
+    ~bytes_reader() {};
 
     template<typename returnType>
     returnType readType();
@@ -26,11 +26,11 @@ protected:
     size_t currentPoint = 0;
 
 private:
-    uint8 readUint8();
+    inline uint8 readUint8();
 };
 
 template<typename returnType>
-returnType ClassReader::readType() {
+returnType bytes_reader::readType() {
 
     static_assert(boost::is_same<returnType, uint16>::value ||
                   boost::is_same<returnType, uint8>::value ||
@@ -75,11 +75,12 @@ returnType ClassReader::readType() {
     return 0;
 }
 
-uint8 ClassReader::readUint8() {
+uint8 bytes_reader::readUint8() {
     byte u1 = data[currentPoint++];
     return u1;
 }
 
-ClassReader::ClassReader(const std::vector<byte> &data) : data(data) {}
+bytes_reader::bytes_reader(const std::vector<byte> &data) : data(data) {}
+
 
 #endif //JUSTVM_CLASS_READER_H

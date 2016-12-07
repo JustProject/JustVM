@@ -18,6 +18,9 @@
 #define BC_U2_SIZE sizeof(BC_U2)
 #define BC_U4_SIZE sizeof(BC_U4)
 
+#define BYTE unsigned char
+#define BYTE_SET std::vector<byte>
+
 // define byte
 typedef unsigned char byte;
 
