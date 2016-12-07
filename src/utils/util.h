@@ -40,6 +40,7 @@ using uint32 = uint32_t;
 using uint16 = uint16_t;
 using uint64 = uint64_t;
 
+// read file msg
 size_t getFileSize(FILE *file);
 
 size_t getFileSize(const char *filePath);

@@ -20,7 +20,7 @@ using zipper::ZipEntry;
     cout << #STRUCT << " " << sizeof(temp) << endl; \
 }
 
-int main(int argc, char **argv) {
+int main0(int argc, char **argv) {
 //    cp_item pool;
 //    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
 //    cout << sizeof(pool);
@@ -40,9 +40,10 @@ int main(int argc, char **argv) {
     TEST(CONSTANT_MethodType_info);
     TEST(CONSTANT_InvokeDynamic_info);
     TEST(cp_item);
+    return 0;
 }
 
-int main1() {
+int main() {
 
     std::string dir = "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar";
 
@@ -64,10 +65,11 @@ int main1() {
 //    printf("%" PRIu16 "\n", reader.readType<uint16>());
 //    printf("%" PRIu16 "\n", reader.readType<uint16>());
     ClassFile classFile;
-    classFile.setMagic(reader.readType<uint32>());
-    classFile.setMinorVersion(reader.readType<uint16>());
-    classFile.setMajorVersion(reader.readType<uint16>());
-    classFile.setConstantPoolCount(reader.readType<uint16>());
+    classFile.setMagic(reader.read_bytes_with_type<uint32>());
+    classFile.setMinorVersion(reader.read_bytes_with_type<uint16>());
+    classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
+    classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
 
+    read_cp_item_from_bytes(reader, 10);
     return 0;
 }

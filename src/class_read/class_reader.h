@@ -18,19 +18,24 @@ public:
     ~bytes_reader() {};
 
     template<typename returnType>
-    returnType readType();
+    returnType read_bytes_with_type();
 
+    inline const bool get_ready_to_read_constant_pool();
 protected:
     const std::vector<byte> &data;
+
+    bool ready_to_read_constant_pool_item = false;
 
     size_t currentPoint = 0;
 
 private:
-    inline uint8 readUint8();
+    inline uint8 read_Uint8();
+
+    inline void set_ready_to_read_constant_pool(bool flag);
 };
 
 template<typename returnType>
-returnType bytes_reader::readType() {
+returnType bytes_reader::read_bytes_with_type() {
 
     static_assert(boost::is_same<returnType, uint16>::value ||
                   boost::is_same<returnType, uint8>::value ||
@@ -39,31 +44,38 @@ returnType bytes_reader::readType() {
                   "you should use uint 8/16/32/64 !!!");
 
     if (boost::is_same<returnType, uint8>::value) {
-        return readUint8();
+        return read_Uint8();
     } else if (boost::is_same<returnType, uint16>::value) {
-        byte u1 = readUint8();
-        byte u2 = readUint8();
+        byte u1 = read_Uint8();
+        byte u2 = read_Uint8();
 
         uint16 u16 = u1 << 8 | u2;
+
+        // after read (1 * uint32 + 3 * uint16)
+        // ready to read constant pool
+        if (currentPoint == 10) {
+            this->set_ready_to_read_constant_pool(true);
+        }
+
         return u16;
     } else if (boost::is_same<returnType, uint32>::value) {
 
-        byte u1 = readUint8();
-        byte u2 = readUint8();
-        byte u3 = readUint8();
-        byte u4 = readUint8();
+        byte u1 = read_Uint8();
+        byte u2 = read_Uint8();
+        byte u3 = read_Uint8();
+        byte u4 = read_Uint8();
         uint32 u32 = u1 << 24 | u2 << 16 | u3 << 8 | u4;
         return u32;
     } else if (boost::is_same<returnType, uint64>::value) {
-        byte u1 = readUint8();
-        byte u2 = readUint8();
-        byte u3 = readUint8();
-        byte u4 = readUint8();
+        byte u1 = read_Uint8();
+        byte u2 = read_Uint8();
+        byte u3 = read_Uint8();
+        byte u4 = read_Uint8();
 
-        byte u5 = readUint8();
-        byte u6 = readUint8();
-        byte u7 = readUint8();
-        byte u8 = readUint8();
+        byte u5 = read_Uint8();
+        byte u6 = read_Uint8();
+        byte u7 = read_Uint8();
+        byte u8 = read_Uint8();
 
         uint32 ul = u1 << 24 | u2 << 16 | u3 << 8 | u4;
         uint32 ur = u5 << 24 | u6 << 16 | u7 << 8 | u8;
@@ -75,9 +87,17 @@ returnType bytes_reader::readType() {
     return 0;
 }
 
-uint8 bytes_reader::readUint8() {
+inline uint8 bytes_reader::read_Uint8() {
     byte u1 = data[currentPoint++];
     return u1;
+}
+
+inline void bytes_reader::set_ready_to_read_constant_pool(bool flag) {
+    this->ready_to_read_constant_pool_item = flag;
+}
+
+inline const bool bytes_reader::get_ready_to_read_constant_pool() {
+    return ready_to_read_constant_pool_item;
 }
 
 bytes_reader::bytes_reader(const std::vector<byte> &data) : data(data) {}
