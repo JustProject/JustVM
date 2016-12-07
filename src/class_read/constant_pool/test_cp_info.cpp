@@ -9,7 +9,7 @@ using std::endl;
 
 
 int main() {
-    ENUM_REFLECT(cp_tag, BC_U1)->fromValue(7);
+    ENUM_REFLECT(cp_tag, BC_U1)->fromValue(11);
 
     return 0;
 }

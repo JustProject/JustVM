@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include <map>
+#include <cstdlib>
 #include "pystring/pystring.h"
 #include <vector>
 
@@ -27,9 +28,9 @@ public:
         return "";
     }
 
-    T fromString(std::string) const {
-        return rand_result;
-    }
+//    T fromString(std::string) const {
+//        return rand_result;
+//    }
 
     T fromValue(Type) const {
         return 0;
@@ -44,13 +45,6 @@ public:
     template<typename Tag>                                      \
     class EnumReflectionHelper<TypeName,Type, Tag>              \
     {                                                           \
-        Type toType(const std::string & str){\
-            Type item;\
-            std::stringstream ss;\
-            ss << str;\
-            ss >> item;\
-            return item;\
-        }\
         std::map<Type, std::string> re_string_table;             \
         std::map<Type, int> type_number_table;\
     public:                                                     \
@@ -66,13 +60,13 @@ public:
             for(auto item : temp_kv){\
                 temp.clear();\
                 pystring::split(item,temp,"=",-1);\
+                re_string_table[atoi(temp[1].c_str())] = #TypeName"::"+temp[0];\
+                type_number_table[atoi(temp[1].c_str())] = count;\
                 count++;\
-                re_string_table[toType(temp[1])] = #TypeName"::"+temp[0];\
-                type_number_table[toType(temp[1])] = count;\
             }\
         }     \
         std::string toString(TypeName type) const               \
-        { return re_string_table[static_cast<int>(type)]; }     \
+        { return ""; }     \
         TypeName fromValue(Type type){\
             std::cout << re_string_table[type] << std::endl;\
             return static_cast<TypeName>(                       \
