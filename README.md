@@ -1,6 +1,5 @@
-# Then JustVM Open Source Project (JuVMOSP)
-
-Our goal is to **MAKE JVM SLOW AGAIN**!
+# The JustVM Open Source Project (JuVMOSP)
+**MAKE JVM SLOW AGAIN**
 
 ## Development
 Welcome, my dearest developer!
@@ -33,11 +32,12 @@ And also, the apt source may not contain the latest version of CMake,
 if you do encountered this situation, we recommend you go to 
 [CMake](https://www.cmake.org/), where you may download the latest release and build/install it
 on your own machine, for further information and instruction about CMake, 
-please contact one of our developers at email.
+please contact one of our developers at email.  
 5. CLion IDE:  
 [JetBrains CLion IDE](http://www.jetbrains.com/clion/)  
 You may already noticed that CLion IDE is a commercial-plan-only software, 
-so you may want to make a purchase to JetBrains and get its license.
+so you may want to make a purchase to JetBrains and get its license.  
+And I should also remind you that the Clion is sufficient but not necessary.
 
 ### Build - Plan I - CLI
 ```
@@ -56,3 +56,6 @@ initiated automatically.
 
 ## Contact Developers
 Yoto Chang - yotochang@gmail.com - @zhangyutng926 (Twitter&Telegram)
+
+## Reference
+[JVM Specifications](http://docs.oracle.com/javase/specs/jvms/se7/html/index.html)
