@@ -35,7 +35,7 @@ public:
 
 //    T fromString(std::string) const {
 //        return rand_result;
-//
+//    }
 
     T fromValue(Type) const {
         return 0;
@@ -95,7 +95,7 @@ public:
 
 #ifdef REFLECT_NS
 #define ENUM_REFLECT(TypeName)              \
-    (::REFLECT_NS::EnumReflectionHelper<TypeName>::getHelper())
+    (::REFLECT_NS::EnumReflectionHelper<TypeName, Type>::getHelper())
 #else
 #define ENUM_REFLECT(TypeName, Type)              \
     (EnumReflectionHelper<TypeName, Type>::getHelper())
