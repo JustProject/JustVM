@@ -1,15 +1,18 @@
 # version
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
-SET(Boost_USE_STATIC_LIBS OFF)
-
 # project name
 PROJECT(JustVM)
 
 # flag line
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+#
+SET(BOOST_ROOT /Users/liufengkai/boost)
+SET(Boost_INCLUDE_DIR ${BOOST_ROOT}/include)
+SET(Boost_LIBRARY_DIR ${BOOST_ROOT}/lib)
+set(Boost_USE_STATIC_LIBS ON)
 
-FIND_PACKAGE(Boost COMPONENTS system filesystem REQUIRED)
+FIND_PACKAGE(Boost 1.62.0 COMPONENTS system filesystem REQUIRED)
 #FIND_PACKAGE(zlib1g)
 
 LINK_DIRECTORIES(${Boost_LIBRARY_DIR})
