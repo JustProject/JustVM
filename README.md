@@ -32,7 +32,7 @@ And also, the apt source may not contain the latest version of CMake,
 if you do encountered this situation, we recommend you go to 
 [CMake](https://www.cmake.org/), where you may download the latest release and build/install it
 on your own machine, for further information and instruction about CMake, 
-please contact one of our developers at email.
+please contact one of our developers at email.  
 5. CLion IDE:  
 [JetBrains CLion IDE](http://www.jetbrains.com/clion/)  
 You may already noticed that CLion IDE is a commercial-plan-only software, 
