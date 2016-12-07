@@ -7,5 +7,5 @@ cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u32) {
         throw std::logic_error("reader must be ready to read cp");
     }
 
-
+    ENUM_REFLECT(cp_tag, BC_U1)->fromValue(u32);
 }
