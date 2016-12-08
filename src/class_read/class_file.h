@@ -94,10 +94,6 @@ public:
     const std::vector<cp_item> &getConstantPool() const {
         return constantPool;
     }
-
-    void setConstantPool(const std::vector<cp_item> &constantPool) {
-        ClassFile::constantPool = constantPool;
-    }
 };
 
 

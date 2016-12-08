@@ -24,7 +24,7 @@ int main0(int argc, char **argv) {
 //    cp_item pool;
 //    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
 //    cout << sizeof(pool);
-    TEST(CONSTANT_Meta);
+    TEST(CONSTANT_Meta_info);
     TEST(CONSTANT_Class_info);
     TEST(CONSTANT_Fieldref_info);
     TEST(CONSTANT_Methodref_info);
@@ -70,6 +70,6 @@ int main() {
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
 
-    read_cp_item_from_bytes(reader, 10);
+    read_cp_item_from_bytes(reader, 7);
     return 0;
 }

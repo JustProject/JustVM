@@ -8,6 +8,7 @@ ADD_SUBDIRECTORY(access_flag)
 
 # Executable target declaration
 ADD_EXECUTABLE(ClassRead
+        ../utils/pystring/pystring.cpp
         ${CONSTANT_POOL_INFO_SRC}
         ${ACCESS_FLAG_SRC}
         ${CLASS_READ})
