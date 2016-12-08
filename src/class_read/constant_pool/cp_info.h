@@ -59,8 +59,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Meta_info::read_constant_info(bytes_reader &reader) {
+void read_cp_meta_info(CONSTANT_Meta_info &, bytes_reader &reader);
 
+inline void CONSTANT_Meta_info::read_constant_info(bytes_reader &reader) {
+    read_cp_meta_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -74,8 +76,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
+void read_cp_class_info(CONSTANT_Class_info &, bytes_reader &reader);
+
 inline void CONSTANT_Class_info::read_constant_info(bytes_reader &reader) {
-    printf("class info");
+    read_cp_class_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -90,8 +94,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Fieldref_info::read_constant_info(bytes_reader &reader) {
+void read_cp_field_ref_info(CONSTANT_Fieldref_info &, bytes_reader &reader);
 
+inline void CONSTANT_Fieldref_info::read_constant_info(bytes_reader &reader) {
+    read_cp_field_ref_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -106,8 +112,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Methodref_info::read_constant_info(bytes_reader &reader) {
+void read_cp_method_ref_info(CONSTANT_Methodref_info &, bytes_reader &reader);
 
+inline void CONSTANT_Methodref_info::read_constant_info(bytes_reader &reader) {
+    read_cp_method_ref_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -122,8 +130,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_InterfaceMethodref_info::read_constant_info(bytes_reader &reader) {
+void read_cp_interface_method_ref_info(CONSTANT_InterfaceMethodref_info &, bytes_reader &reader);
 
+inline void CONSTANT_InterfaceMethodref_info::read_constant_info(bytes_reader &reader) {
+    read_cp_interface_method_ref_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -137,8 +147,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_String_info::read_constant_info(bytes_reader &reader) {
+void read_cp_string_info(CONSTANT_String_info &, bytes_reader &reader);
 
+inline void CONSTANT_String_info::read_constant_info(bytes_reader &reader) {
+    read_cp_string_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -152,8 +164,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Integer_info::read_constant_info(bytes_reader &reader) {
+void read_cp_integer_info(CONSTANT_Integer_info &, bytes_reader &reader);
 
+inline void CONSTANT_Integer_info::read_constant_info(bytes_reader &reader) {
+    read_cp_integer_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -167,8 +181,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Float_info::read_constant_info(bytes_reader &reader) {
+void read_cp_float_info(CONSTANT_Float_info &, bytes_reader &reader);
 
+inline void CONSTANT_Float_info::read_constant_info(bytes_reader &reader) {
+    read_cp_float_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -183,8 +199,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Long_info::read_constant_info(bytes_reader &reader) {
+void read_cp_long_info(CONSTANT_Long_info &, bytes_reader &reader);
 
+inline void CONSTANT_Long_info::read_constant_info(bytes_reader &reader) {
+    read_cp_long_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -199,8 +217,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Double_info::read_constant_info(bytes_reader &reader) {
+void read_cp_double_info(CONSTANT_Double_info &, bytes_reader &reader);
 
+inline void CONSTANT_Double_info::read_constant_info(bytes_reader &reader) {
+    read_cp_double_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -215,15 +235,17 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_NameAndType_info::read_constant_info(bytes_reader &reader) {
+void read_cp_name_type_info(CONSTANT_NameAndType_info &, bytes_reader &reader);
 
+inline void CONSTANT_NameAndType_info::read_constant_info(bytes_reader &reader) {
+    read_cp_name_type_info(*this, reader);
 }
 
 /** \brief Utf8 string constant item.
  *         THIS IS A SPECIAL CASE AND REQUIRE SPECIAL TREATMENT.
  *
  * There's one tiny change between the implement and the specs: bytes is a pointer that pointed to the content,
- * because of the length-immutability of re_class(and union.
+ * because of the length-immutability of struct and union.
  *
  * FYI, JVM Specs "4.4.7 The CONSTANT_Utf8_info Structure"
  */
@@ -234,8 +256,10 @@ re_class(CONSTANT_Utf8_info, CONSTANT_Base) {
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_Utf8_info::read_constant_info(bytes_reader &reader) {
+void read_cp_utf8_info(CONSTANT_Utf8_info &, bytes_reader &reader);
 
+inline void CONSTANT_Utf8_info::read_constant_info(bytes_reader &reader) {
+    read_cp_utf8_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -250,8 +274,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_MethodHandle_info::read_constant_info(bytes_reader &reader) {
+void read_cp_method_handle_info(CONSTANT_MethodHandle_info &, bytes_reader &reader);
 
+inline void CONSTANT_MethodHandle_info::read_constant_info(bytes_reader &reader) {
+    read_cp_method_handle_info(*this, reader);
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -260,14 +286,15 @@ inline void CONSTANT_MethodHandle_info::read_constant_info(bytes_reader &reader)
 
 re_class(CONSTANT_MethodType_info, CONSTANT_Base) {
 public:
-    BC_U1 tag : BC_U1_SIZE;
     BC_U2 descriptor_index : BC_U2_SIZE;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_MethodType_info::read_constant_info(bytes_reader &reader) {
+void read_cp_method_type_info(CONSTANT_MethodType_info &, bytes_reader &reader);
 
+inline void CONSTANT_MethodType_info::read_constant_info(bytes_reader &reader) {
+    read_cp_method_type_info(*this, reader);
 }
 
 re_class(CONSTANT_InvokeDynamic_info, CONSTANT_Base) {
@@ -278,8 +305,10 @@ public:
     inline void read_constant_info(bytes_reader &reader) override;
 };
 
-inline void CONSTANT_InvokeDynamic_info::read_constant_info(bytes_reader &reader) {
+void read_cp_invoke_dynamic_info(CONSTANT_InvokeDynamic_info &, bytes_reader &reader);
 
+inline void CONSTANT_InvokeDynamic_info::read_constant_info(bytes_reader &reader) {
+    read_cp_invoke_dynamic_info(*this, reader);
 }
 
 /** \brief This possess a single item in the constant pool.
@@ -314,36 +343,6 @@ union cp_item {
  * @return cp-item
  */
 cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u32);
-
-void read_cp_meta_info(CONSTANT_Meta_info &, bytes_reader &reader);
-
-void read_cp_class_info(CONSTANT_Class_info &, bytes_reader &reader);
-
-void read_cp_field_ref_info(CONSTANT_Fieldref_info &, bytes_reader &reader);
-
-void read_cp_method_ref_info(CONSTANT_Methodref_info &, bytes_reader &reader);
-
-void read_cp_interface_method_ref_info(CONSTANT_InterfaceMethodref_info &, bytes_reader &reader);
-
-void read_cp_string_info(CONSTANT_String_info &, bytes_reader &reader);
-
-void read_cp_integer_info(CONSTANT_Integer_info &, bytes_reader &reader);
-
-void read_cp_float_info(CONSTANT_Float_info &, bytes_reader &reader);
-
-void read_cp_long_info(CONSTANT_Long_info &, bytes_reader &reader);
-
-void read_cp_double_info(CONSTANT_Double_info &, bytes_reader &reader);
-
-void read_cp_name_type_info(CONSTANT_NameAndType_info &, bytes_reader &reader);
-
-void read_cp_utf8_info(CONSTANT_Utf8_info &, bytes_reader &reader);
-
-void read_cp_method_handle_info(CONSTANT_MethodHandle_info &, bytes_reader &reader);
-
-void read_cp_method_type_info(CONSTANT_MethodType_info &, bytes_reader &reader);
-
-void read_cp_invoke_dynamic_info(CONSTANT_InvokeDynamic_info &, bytes_reader &reader);
 
 
 #endif //JUSTVM_CONSTANTINFO_H

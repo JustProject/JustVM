@@ -7,6 +7,8 @@ AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} CONSTANT_POOL_INFO_SRC_INNER)
 SET(CONSTANT_POOL_INFO_SRC ${CONSTANT_POOL_INFO_SRC_INNER} PARENT_SCOPE)
 
 ADD_EXECUTABLE(test_cp_info
+        ${CONSTANT_POOL_INFO_SRC}
+        cp_info.cpp
         test_cp_info.cpp
         ../../utils/pystring/pystring.cpp
-        ${CONSTANT_POOL_INFO_SRC})
+        )
