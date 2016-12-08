@@ -12,48 +12,50 @@
 #include "params.h"
 #include "behaviour.h"
 
-namespace cmd {
+namespace just {
+    namespace cmd {
 
-    template<typename FunctionParamsType>
-    class Argument : public Params, public Behaviour<FunctionParamsType> {
-    protected:
-        FunctionParamsType value;
-    public:
+        template<typename FunctionParamsType>
+        class Argument : public Params, public Behaviour<FunctionParamsType> {
+        protected:
+            FunctionParamsType value;
+        public:
 
-        typedef class Argument Type;
+            typedef class Argument Type;
 
-        /**
-         * @params : option info
-         *
-         * @params : behaviour function
-         */
-        Argument(const std::string &optionInfo,
-                 const std::function<void(FunctionParamsType)> &function)
-                : Params(optionInfo), Behaviour(function) { };
+            /**
+             * @params : option info
+             *
+             * @params : behaviour function
+             */
+            Argument(const std::string &optionInfo,
+                     const std::function<void(FunctionParamsType)> &function)
+                    : Params(optionInfo), Behaviour(function) {};
 
-        virtual ~Argument() { }
+            virtual ~Argument() {}
 
-        /**
-         * handler message
-         */
-        virtual void handler() override {
-            this->call(value);
-            this->used = true;
-        }
+            /**
+             * handler message
+             */
+            virtual void handler() override {
+                this->call(value);
+                this->used = true;
+            }
 
-        virtual bool check(const std::string &args) override {
-            std::stringstream ss;
+            virtual bool check(const std::string &args) override {
+                std::stringstream ss;
 
-            ss << std::fixed << args;
-            ss >> value;
+                ss << std::fixed << args;
+                ss >> value;
 
-            return !ss.fail();
-        }
+                return !ss.fail();
+            }
 
-        virtual unsigned int valuePosition(const std::string &string) override {
-            return 0;
-        }
-    };
+            virtual unsigned int valuePosition(const std::string &string) override {
+                return 0;
+            }
+        };
+    }
 }
 
 #endif //JUSTVM_ARGUMENT_H

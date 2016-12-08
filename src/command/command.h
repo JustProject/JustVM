@@ -7,22 +7,24 @@
 #ifndef JUSTVM_COMMAND_H
 #define JUSTVM_COMMAND_H
 
-namespace cmd {
+namespace just {
+    namespace cmd {
 
-    class Command : public ParamsList {
+        class Command : public ParamsList {
 
-    public:
-        Command(int argc, char *argv[],
-                const std::initializer_list<std::shared_ptr<Params>> &initParamsList,
-                const std::string &optionInfo = "Command")
-                : ParamsList(initParamsList, optionInfo) {
-            for (unsigned int i = 1; i < argc; i++) {
-                this->check(argv[i]);
+        public:
+            Command(int argc, char *argv[],
+                    const std::initializer_list<std::shared_ptr<Params>> &initParamsList,
+                    const std::string &optionInfo = "Command")
+                    : ParamsList(initParamsList, optionInfo) {
+                for (unsigned int i = 1; i < argc; i++) {
+                    this->check(argv[i]);
+                }
+                handler();
             }
-            handler();
-        }
-    };
+        };
 
+    }
 }
 
 #endif //JUSTVM_COMMAND_H

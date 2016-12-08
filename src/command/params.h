@@ -9,63 +9,64 @@
 #include <sstream>
 #include "option_info.h"
 
-namespace cmd {
-
-    /**
-     * Params for each argument
-     */
-    class Params : public OptionInfo {
-
-    protected:
-        bool used = false;
-
-    public:
-        /**
-         * Default Constructor for Params
-         */
-        Params(const std::string &optionInfo)
-                : OptionInfo(optionInfo) { }
-
-
-        virtual ~Params() { }
+namespace just {
+    namespace cmd {
 
         /**
-         * method to parse arguments
+         * Params for each argument
          */
-        virtual void handler() = 0;
+        class Params : public OptionInfo {
 
-        /**
-         * method to check validity
-         */
-        virtual bool check(const std::string &args) = 0;
+        protected:
+            bool used = false;
 
-        /**
-         * command must use this params?
-         */
-        virtual bool isNeeded() {
-            return false;
+        public:
+            /**
+             * Default Constructor for Params
+             */
+            Params(const std::string &optionInfo)
+                    : OptionInfo(optionInfo) {}
+
+
+            virtual ~Params() {}
+
+            /**
+             * method to parse arguments
+             */
+            virtual void handler() = 0;
+
+            /**
+             * method to check validity
+             */
+            virtual bool check(const std::string &args) = 0;
+
+            /**
+             * command must use this params?
+             */
+            virtual bool isNeeded() {
+                return false;
+            };
+
+            /**
+             * parsed it?
+             */
+            virtual bool isParsed() {
+                return used;
+            };
+
+            /**
+             * need more params?
+             */
+            virtual bool needParams() {
+                return false;
+            }
+
+            /**
+             * position where value starts in passed string
+             */
+            virtual unsigned int valuePosition(const std::string &) = 0;
         };
-
-        /**
-         * parsed it?
-         */
-        virtual bool isParsed() {
-            return used;
-        };
-
-        /**
-         * need more params?
-         */
-        virtual bool needParams() {
-            return false;
-        }
-
-        /**
-         * position where value starts in passed string
-         */
-        virtual unsigned int valuePosition(const std::string &) = 0;
-    };
-
+    }
 }
 
 #endif //JUSTVM_PARAMS_H
