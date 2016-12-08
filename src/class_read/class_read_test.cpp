@@ -70,6 +70,6 @@ int main() {
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
 
-    read_cp_item_from_bytes(reader, 7);
+    read_cp_item_from_bytes(reader, 2);
     return 0;
 }

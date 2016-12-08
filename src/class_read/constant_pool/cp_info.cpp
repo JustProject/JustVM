@@ -14,7 +14,7 @@ cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u16) {
     auto name = ENUM_REFLECT(cp_tag, BC_U1)->
             from_value_to_string(u16);
 
-    if (name == nullptr) {
+    if (name == "") {
         throw std::logic_error("enum value must be in cp_tag!");
     } else {
         name += "_info";
