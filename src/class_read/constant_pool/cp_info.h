@@ -250,7 +250,8 @@ inline void CONSTANT_NameAndType_info::read_constant_info(bytes_reader &reader) 
  * FYI, JVM Specs "4.4.7 The CONSTANT_Utf8_info Structure"
  */
 re_class(CONSTANT_Utf8_info, CONSTANT_Base) {
-    BC_U2 length : BC_U2_SIZE;
+public:
+    BC_U4 length : BC_U4_SIZE;
     BC_U1 *bytes; // FIXME Maybe you'd like to change the type of the pointer
 
     inline void read_constant_info(bytes_reader &reader) override;
@@ -296,6 +297,10 @@ void read_cp_method_type_info(CONSTANT_MethodType_info &, bytes_reader &reader);
 inline void CONSTANT_MethodType_info::read_constant_info(bytes_reader &reader) {
     read_cp_method_type_info(*this, reader);
 }
+
+///////////////////////////////////////////////////////////////////////////
+// constant invoke dynamic info
+///////////////////////////////////////////////////////////////////////////
 
 re_class(CONSTANT_InvokeDynamic_info, CONSTANT_Base) {
 public:
@@ -343,6 +348,5 @@ union cp_item {
  * @return cp-item
  */
 cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u32);
-
 
 #endif //JUSTVM_CONSTANTINFO_H

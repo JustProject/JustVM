@@ -54,9 +54,9 @@ int main() {
 
     unzipper.extractEntryToMemory("java/lang/String$1.class", unzipped_entry);
 
-//    for (int i = 0; i < unzipped_entry.size(); ++i) {
-//        printf("%x ", unzipped_entry[i]);
-//    }
+    for (int i = 0; i < unzipped_entry.size(); ++i) {
+        printf("%x ", unzipped_entry[i]);
+    }
 
     bytes_reader reader(std::cref(unzipped_entry));
 
@@ -70,6 +70,8 @@ int main() {
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
 
-    read_cp_item_from_bytes(reader, 2);
+    // read cp
+//    printf("\n %x \n", reader.read_bytes_with_type<uint8>());
+    read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>());
     return 0;
 }

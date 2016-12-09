@@ -9,10 +9,11 @@
 #include <cassert>
 #include <memory>
 #include <cstdint>
+#include <cstdlib>
 
-#define BC_U1 uint16_t // Byte code u1
-#define BC_U2 uint32_t // Byte code u2
-#define BC_U4 uint64_t // Byte code u4
+#define BC_U1 uint8_t // Byte code u1
+#define BC_U2 uint16_t // Byte code u2
+#define BC_U4 uint32_t // Byte code u4
 
 #define BC_U1_SIZE sizeof(BC_U1)
 #define BC_U2_SIZE sizeof(BC_U2)
@@ -50,5 +51,6 @@ Point<byte> readByteFromFile(Point<byte> byteChars, const char *filePath);
 Point<byte> readByteFromFile(Point<byte> byteChars,
                              const size_t size = 0, const char *filePath = "");
 
+void decode_mutf_8(Point<byte> byte_point, int len);
 
 #endif //JUSTVM_UTIL_H

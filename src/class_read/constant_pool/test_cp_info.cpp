@@ -12,7 +12,7 @@ using std::endl;
  * test enum reflect
  * @return
  */
-int main() {
+int main1() {
     ENUM_REFLECT(cp_tag, BC_U1)->from_value(11);
 
     cout << ENUM_REFLECT(cp_tag, BC_U1)->to_string(cp_tag::CONSTANT_InvokeDynamic) << endl;
