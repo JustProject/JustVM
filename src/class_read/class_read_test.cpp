@@ -21,7 +21,7 @@ using zipper::ZipEntry;
 }
 
 
-int main0(int argc, char **argv) {
+int main(int argc, char **argv) {
 //    cp_item pool;
 //    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
 //    cout << sizeof(pool);
@@ -41,10 +41,16 @@ int main0(int argc, char **argv) {
     TEST(CONSTANT_MethodType_info);
     TEST(CONSTANT_InvokeDynamic_info);
     TEST(cp_item);
+
+    af_item item(0x1020);
+    cout << "Af validation: " << item.check_af_valid() << endl;
+    cout << "ACC_PUBLIC :" << item.is_flag_ext<af_tag::ACC_PUBLIC>() << endl;
+    cout << "ACC_SYNTHETIC: " << item.is_flag_ext<af_tag::ACC_SYNTHETIC>() << endl;
+
     return 0;
 }
 
-int main() {
+int main0() {
 
     std::string dir = "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar";
 
@@ -73,9 +79,9 @@ int main() {
 
 //    cp_item *cp_null_item = nullptr;
 //    classFile.insert_item_to_cp(cp_null_item);
-    for (int i = 0; i < classFile.getConstantPoolCount() - 1; ++i) {
-        classFile.insert_item_to_cp(read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>()));
-    }
+//    for (int i = 0; i < classFile.getConstantPoolCount() - 1; ++i) {
+//        classFile.insert_item_to_cp(read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>()));
+//    }
     // dev
 
     return 0;

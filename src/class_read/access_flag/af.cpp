@@ -14,7 +14,7 @@
 
 using namespace just::util::fl_array;
 
-bool af_item::check_af_valid() {
+bool af_item::check_af_valid() throw(std::invalid_argument) {
     // Access Flag validating BEGIN
     // JVM Specs "4.1 The ClassFile Structure"
     if (flag_ext_map[af_tag::ACC_INTERFACE] && (
@@ -32,9 +32,9 @@ bool af_item::check_af_valid() {
     if (flag_ext_map[af_tag::ACC_ANNOTATION] &&
         !flag_ext_map[af_tag::ACC_INTERFACE])
         INVALID_EXPT_CONSTRUCT_ACSTATUS
-    std::map::size_type etype_mod_cnt = flag_ext_map.count(af_tag::ACC_ENUM) +
-                        flag_ext_map.count(af_tag::ACC_ANNOTATION) +
-                        flag_ext_map.count(af_tag::ACC_INTERFACE);
+    std::map<af_tag, bool>::size_type etype_mod_cnt = (unsigned long) (flag_ext_map[af_tag::ACC_ENUM] +
+                                                                       flag_ext_map[af_tag::ACC_ANNOTATION] +
+                                                                       flag_ext_map[af_tag::ACC_INTERFACE]);
     if (etype_mod_cnt > 1)
         INVALID_EXPT_CONSTRUCT_ACSTATUS
     // Access Flag validating END
@@ -64,7 +64,7 @@ void af_item::calc_modifier() {
 }
 
 // FIXME Data-specified implementation
-af_item::af_item(fl_array_ut<af_tag> &flags) {
+af_item::af_item(fl_array_ut<af_tag> &flags) throw(std::invalid_argument) {
     // The following code is for the purpose of runtime acceleration
     for (af_tag &item : flags) {
         flag_ext_map[item] = true;
@@ -85,10 +85,11 @@ af_item::af_item(fl_array_ut<af_tag> &flags) {
 // XXX C++ Template MetaProgramming Warning!
 template<typename T, int _base, int _digit>
 static inline BYTE get_hexdigit_from_bytes(const T src) {
+    T csrc = src;
     for (int i = 0; i < _digit; i++) {
-        src /= _base;
+        csrc /= _base;
     }
-    return src % _base;
+    return csrc % _base;
 }
 
 #define DEF_DIG_ARG_U2HEX(MOD, DIG) \
@@ -96,7 +97,7 @@ static inline BYTE get_hexdigit_from_bytes(const T src) {
 #define UNSUPPORTED_AF(DIG) \
     throw new std::invalid_argument("Af error at digit " #DIG);
 
-af_item::af_item(BC_U2 modifier): modifier(modifier) {
+af_item::af_item(BC_U2 modifier) throw(std::invalid_argument): modifier(modifier) {
     // TODO Construct from a modifier
     DEF_DIG_ARG_U2HEX(modifier, 0);
     DEF_DIG_ARG_U2HEX(modifier, 1);
@@ -171,7 +172,7 @@ af_item::af_item(BC_U2 modifier): modifier(modifier) {
     check_af_valid();
 }
 
-af_item::af_item(std::map<af_tag, bool> flag_map): flag_ext_map(flag_map) {
+af_item::af_item(std::map<af_tag, bool> flag_map) throw(std::invalid_argument): flag_ext_map(flag_map) {
     check_af_valid();
     calc_modifier();
 }

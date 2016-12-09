@@ -5,6 +5,6 @@
 
 #include "class_file.h"
 
-void class_file::insert_item_to_cp(cp_item *item) {
-    this->constantPool.push_back(item);
-}
+//void class_file::insert_item_to_cp(cp_item *item) {
+//    this->constantPool.push_back(item);
+//}
