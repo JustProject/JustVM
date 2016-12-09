@@ -7,9 +7,10 @@
 
 
 #include <util.h>
+#include <fl_array/fl_array_ut.hpp>
 
 
-enum AccessFlag : BC_U2 {
+enum af_tag : BC_U2 {
     ACC_PUBLIC = 0x0001,
     ACC_FINAL = 0x0010,
     ACC_SUPER = 0x0020,
@@ -29,7 +30,7 @@ enum AccessFlag : BC_U2 {
  *
  * FYI, JVM Specs "Table 4.1-A Class access and property modifiers"
  */
-class ACStatus {
+class af_item {
 public:
     /** \brief The default constructor will construct the access flag of a HelloWorld-liked public class.
      *
@@ -39,68 +40,38 @@ public:
      * ACC_SUPER TRUE (In Java 8 and above versions)
      * ACC_INTERFACE FALSE
      * ACC_ABSTRACT FALSE
-     * ACC_SYNTHETIDC FALSE
+     * ACC_SYNTHETIC FALSE
      * ACC_ANNOTATION FALSE
      * ACC_ENUM FALSE
      */
-    ACStatus() :
-            acc_public(true),
-            acc_final(false),
-            acc_super(true), // FIXME Are we talking about Java 8 and above?
-            acc_interface(false),
-            acc_abstract(false),
-            acc_synthetic(false),
-            acc_annotation(false),
-            acc_enum(false) {}
+    af_item();
 
-    ACStatus(std::vector<AccessFlag>) throw(std::invalid_argument);
+    af_item(just::util::fl_array::fl_array_ut<af_tag> &) throw(std::invalid_argument);
 
-    ACStatus(BC_U2);
+    af_item(BC_U2) throw(std::invalid_argument);
+
+    af_item(std::map<af_tag, bool>) throw(std::invalid_argument);
+
+    /** \brief To check whether the access flag set the instance possessed is valid or not.
+     *
+     * @return true or invalid_argument
+     */
+    bool check_af_valid() throw(std::invalid_argument);
 
     BC_U2 getModifier();
 
-    inline bool isPublic() const {
-        return acc_public;
-    }
-
-    inline bool isFinal() const {
-        return acc_final;
-    }
-
-    inline bool isSuper() const {
-        return acc_super;
-    }
-
-    inline bool isInterface() const {
-        return acc_interface;
-    }
-
-    inline bool isAbstract() const {
-        return acc_abstract;
-    }
-
-    inline bool isSynthetic() const {
-        return acc_synthetic;
-    }
-
-    inline bool isAnnotation() const {
-        return acc_annotation;
-    }
-
-    inline bool isEnum() const {
-        return acc_enum;
+    // XXX C++ Template MetaProgramming Warning!
+    template<af_tag _t>
+    inline bool is_flag_ext() {
+        return flag_ext_map[_t];
     }
 
 private:
-    bool acc_public;
-    bool acc_final;
-    bool acc_super;
-    bool acc_interface;
-    bool acc_abstract;
-    bool acc_synthetic;
-    bool acc_annotation;
-    bool acc_enum;
-    std::vector<AccessFlag> flagList;
+    std::map<af_tag, bool> flag_ext_map;
+#define EXPT_MODIFIER 0xFFFF
+    BC_U2 modifier = EXPT_MODIFIER;
+
+    void calc_modifier();
 };
 
 

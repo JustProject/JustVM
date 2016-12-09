@@ -19,7 +19,7 @@ protected:
     uint16 majorVersion;
     uint16 constantPoolCount;
     std::vector<cp_item> constantPool;
-    ACStatus accessFlags;
+    af_item accessFlags;
     uint16 thisClass;
     uint16 superClass;
 
@@ -59,11 +59,11 @@ public:
         this->constantPoolCount = constantPoolCount;
     }
 
-    inline ACStatus getAccessFlags() const {
+    inline af_item getAccessFlags() const {
         return accessFlags;
     }
 
-    inline void setAccessFlags(const ACStatus accessFlags) {
+    inline void setAccessFlags(const af_item accessFlags) {
         this->accessFlags = accessFlags;
     }
 
