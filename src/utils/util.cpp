@@ -80,3 +80,68 @@ Point<byte> readByteFromFile(Point<byte> byteChars,
     return byteChars;
 }
 
+void decode_mutf_8(Point<byte> byte_point, int len) {
+    Point<uint16> uint16_point = new uint16[len];
+    uint16 c, char2, char3;
+    int count = 0, uint16_count = 0;
+    for (; count < len;) {
+        c = uint16(byte_point[count]);
+        if (c > 127) {
+            break;
+        }
+        count++;
+        uint16_point[uint16_count] = c;
+        uint16_count++;
+    }
+
+    for (; count < len;) {
+        c = uint16(byte_point[count]);
+        switch (c >> 4) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                /* 0xxxxxxx*/
+                count++;
+                uint16_point[uint16_count] = c;
+                uint16_count++;
+                break;
+            case 12:
+            case 13:
+                /* 110x xxxx   10xx xxxx*/
+                count += 2;
+                if (count > len) {
+                    throw std::logic_error("malformed input: partial character at end");
+                }
+                char2 = uint16(byte_point[count - 1]);
+                if (char2 & 0xC0 != 0x80) {
+                    throw std::logic_error("malformed input around byte" + (char) count);
+                }
+                uint16_point[uint16_count] = c & 0x1F << 6 | char2 & 0x3F;
+                uint16_count++;
+                break;
+            case 14:
+                /* 1110 xxxx  10xx xxxx  10xx xxxx*/
+                count += 3;
+                if (count > len) {
+                    throw std::logic_error("malformed input: partial character at end");
+                }
+                char2 = uint16(bytearr[count - 2]);
+                char3 = uint16(bytearr[count - 1]);
+                if (char2 & 0xC0 != 0x80 || char3 & 0xC0 != 0x80) {
+                    throw std::logic_error("malformed input around byte" + (char) (count - 1));
+                }
+                uint16_point[uint16_count] = c & 0x0F << 12 | char2 & 0x3F << 6 | char3 & 0x3F << 0;
+                uint16_count++;
+                break;
+            default:
+                /* 10xx xxxx,  1111 xxxx */
+                throw std::logic_error("malformed input around byte" + (char) (count));
+        }
+    }
+}
+
