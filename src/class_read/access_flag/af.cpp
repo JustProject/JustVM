@@ -55,7 +55,8 @@ af_item::af_item(): flag_ext_map({
 
 void af_item::calc_modifier() {
     modifier = 0;
-    for (std::pair<af_tag, bool> &item : flag_ext_map) {
+    // std::pair<af_tag, bool> & origin
+    for (auto item : flag_ext_map) {
         if (item.second) {
             modifier += item.first;
         }

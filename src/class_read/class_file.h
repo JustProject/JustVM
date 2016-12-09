@@ -12,7 +12,7 @@
 #include "constant_pool/cp_info.h"
 
 
-class ClassFile {
+class class_file {
 protected:
     uint32 magic;
     uint16 minorVersion;
@@ -27,6 +27,9 @@ protected:
 
     // fields & methods
 public:
+
+    void insert_item_to_cp(cp_item *item);
+
     inline uint32 getMagic() const {
         return magic;
     }
@@ -96,7 +99,7 @@ public:
     }
 
     void setConstantPool(const std::vector<cp_item> &constantPool) {
-        ClassFile::constantPool = constantPool;
+        this->constantPool = constantPool;
     }
 };
 

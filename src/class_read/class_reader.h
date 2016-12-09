@@ -21,6 +21,9 @@ public:
     returnType read_bytes_with_type();
 
     inline const bool get_ready_to_read_constant_pool();
+
+    inline void read_bytes_by_len(Point<byte> byte_point, int len);
+
 protected:
     const std::vector<byte> &data;
 
@@ -101,6 +104,14 @@ inline const bool bytes_reader::get_ready_to_read_constant_pool() {
 }
 
 bytes_reader::bytes_reader(const std::vector<byte> &data) : data(data) {}
+
+inline void bytes_reader::read_bytes_by_len(Point<byte> byte_point, int len) {
+    for (int i = 0; i < len; ++i) {
+        byte_point[i] = data[currentPoint + i];
+    }
+
+    currentPoint += len;
+}
 
 
 #endif //JUSTVM_CLASS_READER_H
