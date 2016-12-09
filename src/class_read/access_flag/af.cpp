@@ -14,48 +14,45 @@
 
 using namespace just::util::fl_array;
 
-bool af_item::check_af_valid() {
+bool af_item::check_af_valid() throw(std::invalid_argument) {
     // Access Flag validating BEGIN
     // JVM Specs "4.1 The ClassFile Structure"
     if (flag_ext_map[af_tag::ACC_INTERFACE] && (
             !flag_ext_map[af_tag::ACC_ABSTRACT] ||
             flag_ext_map[af_tag::ACC_FINAL] ||
             flag_ext_map[af_tag::ACC_SUPER] ||
-            flag_ext_map[af_tag::ACC_ENUM]))
-        INVALID_EXPT_CONSTRUCT_ACSTATUS
+            flag_ext_map[af_tag::ACC_ENUM])) INVALID_EXPT_CONSTRUCT_ACSTATUS
     if (!flag_ext_map[af_tag::ACC_INTERFACE] &&
-        flag_ext_map[af_tag::ACC_ANNOTATION])
-        INVALID_EXPT_CONSTRUCT_ACSTATUS
+        flag_ext_map[af_tag::ACC_ANNOTATION]) INVALID_EXPT_CONSTRUCT_ACSTATUS
     if (flag_ext_map[af_tag::ACC_FINAL] &&
-        flag_ext_map[af_tag::ACC_ABSTRACT])
-        INVALID_EXPT_CONSTRUCT_ACSTATUS
+        flag_ext_map[af_tag::ACC_ABSTRACT]) INVALID_EXPT_CONSTRUCT_ACSTATUS
     if (flag_ext_map[af_tag::ACC_ANNOTATION] &&
-        !flag_ext_map[af_tag::ACC_INTERFACE])
-        INVALID_EXPT_CONSTRUCT_ACSTATUS
-    std::map::size_type etype_mod_cnt = flag_ext_map.count(af_tag::ACC_ENUM) +
-                        flag_ext_map.count(af_tag::ACC_ANNOTATION) +
-                        flag_ext_map.count(af_tag::ACC_INTERFACE);
-    if (etype_mod_cnt > 1)
-        INVALID_EXPT_CONSTRUCT_ACSTATUS
+        !flag_ext_map[af_tag::ACC_INTERFACE]) INVALID_EXPT_CONSTRUCT_ACSTATUS
+
+    auto etype_mod_cnt = flag_ext_map.count(af_tag::ACC_ENUM) +
+                         flag_ext_map.count(af_tag::ACC_ANNOTATION) +
+                         flag_ext_map.count(af_tag::ACC_INTERFACE);
+    if (etype_mod_cnt > 1) INVALID_EXPT_CONSTRUCT_ACSTATUS
     // Access Flag validating END
     return true;
 }
 
-af_item::af_item(): flag_ext_map({
-                                         {ACC_PUBLIC, true},
-                                         {ACC_FINAL, false},
-                                         {ACC_SUPER, true},
-                                         {ACC_SUPER, true},
-                                         {ACC_INTERFACE, false},
-                                         {ACC_ABSTRACT, false},
-                                         {ACC_SYNTHETIC, false},
-                                         {ACC_ANNOTATION, false},
-                                         {ACC_ENUM, false}
-                                 }), modifier(0x0021) {}
+af_item::af_item() : flag_ext_map({
+                                          {ACC_PUBLIC,     true},
+                                          {ACC_FINAL,      false},
+                                          {ACC_SUPER,      true},
+                                          {ACC_SUPER,      true},
+                                          {ACC_INTERFACE,  false},
+                                          {ACC_ABSTRACT,   false},
+                                          {ACC_SYNTHETIC,  false},
+                                          {ACC_ANNOTATION, false},
+                                          {ACC_ENUM,       false}
+                                  }), modifier(0x0021) {}
 
 void af_item::calc_modifier() {
     modifier = 0;
-    for (std::pair<af_tag, bool> &item : flag_ext_map) {
+    // std::pair<af_tag, bool> & origin
+    for (auto item : flag_ext_map) {
         if (item.second) {
             modifier += item.first;
         }
@@ -63,7 +60,7 @@ void af_item::calc_modifier() {
 }
 
 // FIXME Data-specified implementation
-af_item::af_item(fl_array_ut<af_tag> &flags) {
+af_item::af_item(fl_array_ut<af_tag> &flags) throw(std::invalid_argument) {
     // The following code is for the purpose of runtime acceleration
     for (af_tag &item : flags) {
         flag_ext_map[item] = true;
@@ -83,7 +80,7 @@ af_item::af_item(fl_array_ut<af_tag> &flags) {
  */
 // XXX C++ Template MetaProgramming Warning!
 template<typename T, int _base, int _digit>
-static inline BYTE get_hexdigit_from_bytes(const T src) {
+static inline BYTE get_hexdigit_from_bytes(T src) {
     for (int i = 0; i < _digit; i++) {
         src /= _base;
     }
@@ -95,7 +92,7 @@ static inline BYTE get_hexdigit_from_bytes(const T src) {
 #define UNSUPPORTED_AF(DIG) \
     throw new std::invalid_argument("Af error at digit " #DIG);
 
-af_item::af_item(BC_U2 modifier): modifier(modifier) {
+af_item::af_item(BC_U2 modifier) throw(std::invalid_argument) : modifier(modifier) {
     // TODO Construct from a modifier
     DEF_DIG_ARG_U2HEX(modifier, 0);
     DEF_DIG_ARG_U2HEX(modifier, 1);
@@ -109,7 +106,8 @@ af_item::af_item(BC_U2 modifier): modifier(modifier) {
         case 0x1:
             flag_ext_map[af_tag::ACC_PUBLIC] = true;
             break;
-        default: UNSUPPORTED_AF(0x0)
+        default:
+            UNSUPPORTED_AF(0x0)
     }
     switch (digit_1) {
         case 0x1:
@@ -122,7 +120,8 @@ af_item::af_item(BC_U2 modifier): modifier(modifier) {
             flag_ext_map[af_tag::ACC_FINAL] = true;
             flag_ext_map[af_tag::ACC_SUPER] = true;
             break;
-        default: UNSUPPORTED_AF(0x1)
+        default:
+            UNSUPPORTED_AF(0x1)
     }
     switch (digit_2) {
         case 0x0:
@@ -137,7 +136,8 @@ af_item::af_item(BC_U2 modifier): modifier(modifier) {
             flag_ext_map[af_tag::ACC_INTERFACE] = true;
             flag_ext_map[af_tag::ACC_ABSTRACT] = true;
             break;
-        default: UNSUPPORTED_AF(0x2)
+        default:
+            UNSUPPORTED_AF(0x2)
     }
     switch (digit_3) {
         case 0x0:
@@ -164,13 +164,14 @@ af_item::af_item(BC_U2 modifier): modifier(modifier) {
             flag_ext_map[af_tag::ACC_ANNOTATION] = true;
             flag_ext_map[af_tag::ACC_ENUM] = true;
             break;
-        default: UNSUPPORTED_AF(0x3)
+        default:
+            UNSUPPORTED_AF(0x3)
     }
 
     check_af_valid();
 }
 
-af_item::af_item(std::map<af_tag, bool> flag_map): flag_ext_map(flag_map) {
+af_item::af_item(std::map<af_tag, bool> flag_map) throw(std::invalid_argument) : flag_ext_map(flag_map) {
     check_af_valid();
     calc_modifier();
 }

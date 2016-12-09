@@ -29,9 +29,9 @@ cp_item *read_cp_item_from_bytes(bytes_reader &reader, BC_U1 u16) {
 
     item_struct->read_constant_info(reader);
 
-    cp_item *item = (cp_item *) item_struct;
+    cp_item *item_point = (cp_item *) item_struct;
 
-    return item;
+    return item_point;
 }
 
 void read_cp_meta_info(CONSTANT_Meta_info &info, bytes_reader &reader) {

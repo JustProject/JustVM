@@ -41,7 +41,7 @@ ENUM_CLASS(cp_tag, BC_U1,
 
 class CONSTANT_Base {
 public:
-    BC_U1 tag : BC_U1_SIZE;
+    BC_U1 tag;
 
     CONSTANT_Base() {}
 
@@ -338,6 +338,8 @@ union cp_item {
     CONSTANT_InvokeDynamic_info invokeDynamic_info;
 
     cp_item() {};
+
+//    cp_item(cp_item &item) {};
 };
 
 /**

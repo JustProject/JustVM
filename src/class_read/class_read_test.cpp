@@ -65,23 +65,18 @@ int main() {
 //    printf("%" PRIu16 " \n", reader.readType<uint16>());
 //    printf("%" PRIu16 "\n", reader.readType<uint16>());
 //    printf("%" PRIu16 "\n", reader.readType<uint16>());
-    ClassFile classFile;
+    class_file classFile;
     classFile.setMagic(reader.read_bytes_with_type<uint32>());
     classFile.setMinorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setMajorVersion(reader.read_bytes_with_type<uint16>());
     classFile.setConstantPoolCount(reader.read_bytes_with_type<uint16>());
 
-    // read cp
-//    printf("\n %x \n", reader.read_bytes_with_type<uint8>());
-    uint8 tag10;
+//    cp_item *cp_null_item = nullptr;
+//    classFile.insert_item_to_cp(cp_null_item);
+    for (int i = 0; i < classFile.getConstantPoolCount() - 1; ++i) {
+        classFile.insert_item_to_cp(read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>()));
+    }
 
-//     >> std::dec >> tag10;
-
-    auto item = read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>());
-
-    printf("\n %zu \n", sizeof(item->class_info.name_index));
-
-    read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>());
 
     return 0;
 }

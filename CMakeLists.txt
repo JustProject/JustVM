@@ -7,9 +7,9 @@ PROJECT(JustVM)
 # flag line
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 #
-#SET(BOOST_ROOT /Users/liufengkai/boost)
-#SET(Boost_INCLUDE_DIR ${BOOST_ROOT}/include)
-#SET(Boost_LIBRARY_DIR ${BOOST_ROOT}/lib)
+SET(BOOST_ROOT /Users/liufengkai/boost)
+SET(Boost_INCLUDE_DIR ${BOOST_ROOT}/include)
+SET(Boost_LIBRARY_DIR ${BOOST_ROOT}/lib)
 set(Boost_USE_STATIC_LIBS ON)
 
 FIND_PACKAGE(Boost COMPONENTS system filesystem REQUIRED)

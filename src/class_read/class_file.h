@@ -12,13 +12,13 @@
 #include "constant_pool/cp_info.h"
 
 
-class ClassFile {
+class class_file {
 protected:
     uint32 magic;
     uint16 minorVersion;
     uint16 majorVersion;
     uint16 constantPoolCount;
-    std::vector<cp_item> constantPool;
+    std::vector<cp_item *> constantPool;
     af_item accessFlags;
     uint16 thisClass;
     uint16 superClass;
@@ -27,6 +27,9 @@ protected:
 
     // fields & methods
 public:
+
+    void insert_item_to_cp(cp_item *item);
+
     inline uint32 getMagic() const {
         return magic;
     }
@@ -89,10 +92,6 @@ public:
 
     inline void setInterfaces(const std::vector<uint16> &interfaces) {
         this->interfaces = interfaces;
-    }
-
-    const std::vector<cp_item> &getConstantPool() const {
-        return constantPool;
     }
 };
 
