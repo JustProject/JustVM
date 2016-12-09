@@ -20,7 +20,7 @@ using zipper::ZipEntry;
     cout << #STRUCT << " " << sizeof(temp) << endl; \
 }
 
-int main0(int argc, char **argv) {
+int main(int argc, char **argv) {
 //    cp_item pool;
 //    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
 //    cout << sizeof(pool);
@@ -43,7 +43,7 @@ int main0(int argc, char **argv) {
     return 0;
 }
 
-int main() {
+int main1() {
 
     std::string dir = "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar";
 
@@ -72,6 +72,15 @@ int main() {
 
     // read cp
 //    printf("\n %x \n", reader.read_bytes_with_type<uint8>());
+    uint8 tag10;
+
+//     >> std::dec >> tag10;
+
+    auto item = read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>());
+
+    printf("\n %zu \n", sizeof(item->class_info.name_index));
+
     read_cp_item_from_bytes(reader, reader.read_bytes_with_type<uint8>());
+
     return 0;
 }

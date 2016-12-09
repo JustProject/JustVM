@@ -71,7 +71,7 @@ inline void CONSTANT_Meta_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Class_info, CONSTANT_Base) {
 public:
-    BC_U2 name_index : BC_U2_SIZE;
+    BC_U2 name_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -88,8 +88,8 @@ inline void CONSTANT_Class_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Fieldref_info, CONSTANT_Base) {
 public:
-    BC_U2 class_index : BC_U2_SIZE;
-    BC_U2 name_and_type_index : BC_U2_SIZE;
+    BC_U2 class_index;
+    BC_U2 name_and_type_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -106,8 +106,8 @@ inline void CONSTANT_Fieldref_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Methodref_info, CONSTANT_Base) {
 public:
-    BC_U2 class_index : BC_U2_SIZE;
-    BC_U2 name_and_type_index : BC_U2_SIZE;
+    BC_U2 class_index;
+    BC_U2 name_and_type_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -124,8 +124,8 @@ inline void CONSTANT_Methodref_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_InterfaceMethodref_info, CONSTANT_Base) {
 public:
-    BC_U2 class_index : BC_U2_SIZE;
-    BC_U2 name_and_type_index : BC_U2_SIZE;
+    BC_U2 class_index;
+    BC_U2 name_and_type_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -142,7 +142,7 @@ inline void CONSTANT_InterfaceMethodref_info::read_constant_info(bytes_reader &r
 
 re_class(CONSTANT_String_info, CONSTANT_Base) {
 public:
-    BC_U2 string_index : BC_U2_SIZE;
+    BC_U2 string_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -159,7 +159,7 @@ inline void CONSTANT_String_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Integer_info, CONSTANT_Base) {
 public:
-    BC_U4 bytes : BC_U4_SIZE;
+    BC_U4 bytes;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -176,7 +176,7 @@ inline void CONSTANT_Integer_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Float_info, CONSTANT_Base) {
 public:
-    BC_U4 bytes : BC_U4_SIZE;
+    BC_U4 bytes;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -193,8 +193,8 @@ inline void CONSTANT_Float_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Long_info, CONSTANT_Base) {
 public:
-    BC_U4 high_bytes : BC_U4_SIZE;
-    BC_U4 low_bytes : BC_U4_SIZE;
+    BC_U4 high_bytes;
+    BC_U4 low_bytes;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -211,8 +211,8 @@ inline void CONSTANT_Long_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_Double_info, CONSTANT_Base) {
 public:
-    BC_U4 high_bytes : BC_U4_SIZE;
-    BC_U4 low_bytes : BC_U4_SIZE;
+    BC_U4 high_bytes;
+    BC_U4 low_bytes;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -229,8 +229,8 @@ inline void CONSTANT_Double_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_NameAndType_info, CONSTANT_Base) {
 public:
-    BC_U2 name_index : BC_U2_SIZE;
-    BC_U2 descriptor_index : BC_U2_SIZE;
+    BC_U2 name_index;
+    BC_U2 descriptor_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -251,7 +251,7 @@ inline void CONSTANT_NameAndType_info::read_constant_info(bytes_reader &reader) 
  */
 re_class(CONSTANT_Utf8_info, CONSTANT_Base) {
 public:
-    BC_U4 length : BC_U4_SIZE;
+    BC_U4 length;
     BC_U1 *bytes; // FIXME Maybe you'd like to change the type of the pointer
 
     inline void read_constant_info(bytes_reader &reader) override;
@@ -269,8 +269,8 @@ inline void CONSTANT_Utf8_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_MethodHandle_info, CONSTANT_Base) {
 public:
-    BC_U1 reference_kind : BC_U1_SIZE;
-    BC_U2 reference_index : BC_U2_SIZE;
+    BC_U1 reference_kind;
+    BC_U2 reference_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -287,7 +287,7 @@ inline void CONSTANT_MethodHandle_info::read_constant_info(bytes_reader &reader)
 
 re_class(CONSTANT_MethodType_info, CONSTANT_Base) {
 public:
-    BC_U2 descriptor_index : BC_U2_SIZE;
+    BC_U2 descriptor_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -304,8 +304,8 @@ inline void CONSTANT_MethodType_info::read_constant_info(bytes_reader &reader) {
 
 re_class(CONSTANT_InvokeDynamic_info, CONSTANT_Base) {
 public:
-    BC_U2 boostrap_method_attr_index : BC_U2_SIZE;
-    BC_U2 name_and_type_index : BC_U2_SIZE;
+    BC_U2 boostrap_method_attr_index;
+    BC_U2 name_and_type_index;
 
     inline void read_constant_info(bytes_reader &reader) override;
 };
@@ -321,7 +321,7 @@ inline void CONSTANT_InvokeDynamic_info::read_constant_info(bytes_reader &reader
  * By default, you write data into meta_info.info, except Utf8 info.
  */
 union cp_item {
-    CONSTANT_Meta_info meta_info;
+//    CONSTANT_Meta_info meta_info;
     CONSTANT_Class_info class_info;
     CONSTANT_Fieldref_info fieldref_info;
     CONSTANT_Methodref_info methodref_info;
