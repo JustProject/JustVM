@@ -18,7 +18,7 @@ protected:
     uint16 minorVersion;
     uint16 majorVersion;
     uint16 constantPoolCount;
-    std::vector<cp_item *> constantPool;
+    std::vector<cp_item> constantPool;
     af_item accessFlags;
     uint16 thisClass;
     uint16 superClass;
@@ -92,6 +92,14 @@ public:
 
     inline void setInterfaces(const std::vector<uint16> &interfaces) {
         this->interfaces = interfaces;
+    }
+
+    const std::vector<cp_item> &getConstantPool() const {
+        return constantPool;
+    }
+
+    void setConstantPool(const std::vector<cp_item> &constantPool) {
+        this->constantPool = constantPool;
     }
 };
 
