@@ -13,16 +13,16 @@
 class bytes_reader {
 public:
 
-    inline bytes_reader(const std::vector<byte> &data);
+    bytes_reader(const std::vector<byte> &data);
 
     ~bytes_reader() {};
 
     template<typename returnType>
     returnType read_bytes_with_type();
 
-    inline const bool get_ready_to_read_constant_pool();
+    const bool get_ready_to_read_constant_pool();
 
-    inline void read_bytes_by_len(Point<byte> byte_point, int len);
+    void read_bytes_by_len(Point<byte> byte_point, int len);
 
 protected:
     const std::vector<byte> &data;
@@ -32,9 +32,9 @@ protected:
     size_t currentPoint = 0;
 
 private:
-    inline uint8 read_Uint8();
+    uint8 read_Uint8();
 
-    inline void set_ready_to_read_constant_pool(bool flag);
+    void set_ready_to_read_constant_pool(bool flag);
 };
 
 template<typename returnType>
@@ -90,28 +90,37 @@ returnType bytes_reader::read_bytes_with_type() {
     return 0;
 }
 
-inline uint8 bytes_reader::read_Uint8() {
-    byte u1 = data[currentPoint++];
-    return u1;
-}
+//template<>
+//uint8 bytes_reader::read_bytes_with_type<uint8>() {
+//    return read_Uint8();
+//}
+//
+//template<>
+//uint16 bytes_reader::read_bytes_with_type<uint16>() {
+//    byte u1 = read_Uint8();
+//    byte u2 = read_Uint8();
+//
+//    uint16 u16 = u1 << 8 | u2;
+//
+//    // after read (1 * uint32 + 3 * uint16)
+//    // ready to read constant pool
+//    if (currentPoint == 10) {
+//        this->set_ready_to_read_constant_pool(true);
+//    }
+//
+//    return u16;
+//}
+//
+//template<>
+//uint32 bytes_reader::read_bytes_with_type<uint32>() {
+//    byte u1 = read_Uint8();
+//    byte u2 = read_Uint8();
+//    byte u3 = read_Uint8();
+//    byte u4 = read_Uint8();
+//    uint32 u32 = u1 << 24 | u2 << 16 | u3 << 8 | u4;
+//    return u32;
+//}
 
-inline void bytes_reader::set_ready_to_read_constant_pool(bool flag) {
-    this->ready_to_read_constant_pool_item = flag;
-}
-
-inline const bool bytes_reader::get_ready_to_read_constant_pool() {
-    return ready_to_read_constant_pool_item;
-}
-
-bytes_reader::bytes_reader(const std::vector<byte> &data) : data(data) {}
-
-inline void bytes_reader::read_bytes_by_len(Point<byte> byte_point, int len) {
-    for (int i = 0; i < len; ++i) {
-        byte_point[i] = data[currentPoint + i];
-    }
-
-    currentPoint += len;
-}
 
 
 #endif //JUSTVM_CLASS_READER_H

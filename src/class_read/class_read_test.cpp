@@ -21,7 +21,7 @@ using zipper::ZipEntry;
 }
 
 
-int main(int argc, char **argv) {
+int main90(int argc, char **argv) {
 //    cp_item pool;
 //    pool.meta_info.tag = cp_tag::CONSTANT_Utf8;
 //    cout << sizeof(pool);
@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-int main0() {
+int main() {
 
     std::string dir = "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar";
 
