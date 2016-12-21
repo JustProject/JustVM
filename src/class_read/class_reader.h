@@ -90,37 +90,4 @@ returnType bytes_reader::read_bytes_with_type() {
     return 0;
 }
 
-//template<>
-//uint8 bytes_reader::read_bytes_with_type<uint8>() {
-//    return read_Uint8();
-//}
-//
-//template<>
-//uint16 bytes_reader::read_bytes_with_type<uint16>() {
-//    byte u1 = read_Uint8();
-//    byte u2 = read_Uint8();
-//
-//    uint16 u16 = u1 << 8 | u2;
-//
-//    // after read (1 * uint32 + 3 * uint16)
-//    // ready to read constant pool
-//    if (currentPoint == 10) {
-//        this->set_ready_to_read_constant_pool(true);
-//    }
-//
-//    return u16;
-//}
-//
-//template<>
-//uint32 bytes_reader::read_bytes_with_type<uint32>() {
-//    byte u1 = read_Uint8();
-//    byte u2 = read_Uint8();
-//    byte u3 = read_Uint8();
-//    byte u4 = read_Uint8();
-//    uint32 u32 = u1 << 24 | u2 << 16 | u3 << 8 | u4;
-//    return u32;
-//}
-
-
-
 #endif //JUSTVM_CLASS_READER_H
